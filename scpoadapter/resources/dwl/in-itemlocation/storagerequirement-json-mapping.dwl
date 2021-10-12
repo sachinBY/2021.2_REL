@@ -7,7 +7,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 (payload.itemLocation map {
 (if($.resource != null){
 	resources:($.resource map (res, index) -> {
-		
+	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),	
 	ITEM: $.itemLocationId.item.primaryId,
 	LOC: $.itemLocationId.location.primaryId,
 	RES: res,

@@ -14,6 +14,7 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 (payload.itemLocation map {
 (if($.effectiveInventoryParameters != null) {
 arr:($.effectiveInventoryParameters map(EFF,index)->{
+	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
     ITEM:$.itemLocationId.item.primaryId,
     LOC:$.itemLocationId.location.primaryId,
     EFF:EFF.effectiveFromDateTime,
@@ -61,7 +62,8 @@ arr:($.effectiveInventoryParameters map(EFF,index)->{
 })}
 else 
 {
-arr:[{ITEM:$.itemLocationId.item.primaryId,
+arr:[{(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
+	ITEM:$.itemLocationId.item.primaryId,
     LOC:$.itemLocationId.location.primaryId,
 	SkuEffInventoryParamUDC:(flatten([(lib.getUdcNameAndValue(skuEffInventoryParamEntity, $.avpList, lib.getAvpListMap($.avpList) )[0]) 
 	if ($.avpList != null 

@@ -14,7 +14,7 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 (payload.itemLocation map(itemLocation,index) -> {
 (if(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffectiveParameters != null) {
 arr:(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffectiveParameters map (eff,index) -> {
-		
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		ITEM: itemLocation.itemLocationId.item.primaryId,
 		LOC: itemLocation.itemLocationId.location.primaryId,
 		UNITCOST: log(eff.unitCost.value),
@@ -74,7 +74,8 @@ arr:(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffective
 	ACTIONCODE: itemLocation.documentActionCode
 	})}
 else {
-arr:[{ITEM:itemLocation.itemLocationId.item.primaryId,
+arr:[{(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
+	ITEM:itemLocation.itemLocationId.item.primaryId,
     LOC:itemLocation.itemLocationId.location.primaryId,
 	SKUEffIOParamUDC:(flatten([(lib.getUdcNameAndValue(skuEffIOParamEntity, itemLocation.avpList, lib.getAvpListMap(itemLocation.avpList) )[0]) 
 	if (itemLocation.avpList != null 

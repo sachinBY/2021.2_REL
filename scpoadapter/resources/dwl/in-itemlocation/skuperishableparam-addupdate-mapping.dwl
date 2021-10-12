@@ -4,7 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var skuPerishableParamEntity = vars.entityMap.sku[0].skuperishableparam[0]
 ---
  (payload map (spp, indexOfspp) -> {
- 	
+		INTEGRATION_STAMP: spp.INTEGRATION_STAMP,
 	    ITEM: if (spp.ITEM != null) spp.ITEM else default_value,
 	    LOC: if (spp.LOC != null) spp.LOC else default_value,
 	    MINSHELFLIFEDUR: if (spp.MINSHELFLIFEDUR != null) spp.MINSHELFLIFEDUR else default_value,

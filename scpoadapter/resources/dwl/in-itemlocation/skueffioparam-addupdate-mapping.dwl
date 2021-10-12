@@ -3,7 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (flatten(payload) map (skueffio, indexOfss) -> {
- 	
+		INTEGRATION_STAMP: skueffio.INTEGRATION_STAMP,
 	    ITEM: if (skueffio.ITEM != null) skueffio.ITEM else default_value,
 	    LOC: if (skueffio.LOC != null) skueffio.LOC else default_value,
 	    UNITCOST: if (skueffio.UNITCOST != null) skueffio.UNITCOST else default_value,

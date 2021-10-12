@@ -6,7 +6,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
  var lowestHierarchy= vars.codemap.hierarchyLevels
  var lowesetLevel= 0
  
-fun dmdunit (item, demandUnitInformation) = {
+fun dmdunit (item, demandUnitInformation, index) = {
 	
         BRAND: if (demandUnitInformation.demandUnitDetails.brandName != null) demandUnitInformation.demandUnitDetails.brandName else default_value,
         COLLECTION: if (demandUnitInformation.demandUnitDetails.collectionId != null) demandUnitInformation.demandUnitDetails.collectionId else default_value,
@@ -42,7 +42,8 @@ fun dmdunit (item, demandUnitInformation) = {
   	}) 
 	if (item.itemHierarchyInformation != null 
 		and (item.documentActionCode == "ADD" or item.documentActionCode == "CHANGE_BY_REFRESH") and (p('bydm.dmdunit.process.ancestry') as Boolean default false) == true)])),
-        ACTIONCODE: item.documentActionCode
+        ACTIONCODE: item.documentActionCode,
+        (INTEGRATION_STAMP: log((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 }
 ---
 flatten(flatten((payload.item map (item, itemIndex) -> {
@@ -51,7 +52,7 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
         (DMDUNIT: if (demandUnitInformation.demandUnitName != null) demandUnitInformation.demandUnitName else item.itemId.primaryId),
         DESCR: if(demandUnitInformation.demandUnitDetails.description.value != null) demandUnitInformation.demandUnitDetails.description.value else $.value,
         HIERARCHYLEVEL: lowestHierarchy[lowesetLevel][0],
-        (dmdunit (item, demandUnitInformation)),
+        (dmdunit (item, demandUnitInformation,index)),
         })   
     }.val),
     (item.demandUnitInformation map(demandUnitInformation , index) -> {
@@ -59,7 +60,7 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
         (DMDUNIT: ancestry.memberId) if ancestry.memberId != null,
         DESCR: if(ancestry.memberName != null) ancestry.memberName else default_value,
         HIERARCHYLEVEL: if(ancestry.hierarchyLevelId != null) ancestry.hierarchyLevelId else default_value,
-        (dmdunit (item, demandUnitInformation)),
+        (dmdunit (item, demandUnitInformation,index)),
         }))) if item.itemHierarchyInformation.ancestry != null
     }) 
 } pluck($))))

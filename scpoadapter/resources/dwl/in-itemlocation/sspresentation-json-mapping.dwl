@@ -6,7 +6,7 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 (payload.itemLocation map {
 (if($.safetyStockPresentation != null) {
 arr:($.safetyStockPresentation map (sspr , index) -> {
-		
+		  (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		  ITEM:$.itemLocationId.item.primaryId,
 		  LOC: $.itemLocationId.location.primaryId,
 		  EFF: sspr.effectiveFromDateTime,
@@ -30,7 +30,8 @@ arr:($.safetyStockPresentation map (sspr , index) -> {
 	else 
 	{
 	
-arr:[{		ITEM:$.itemLocationId.item.primaryId,
+arr:[{	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
+		ITEM:$.itemLocationId.item.primaryId,
 		LOC: $.itemLocationId.location.primaryId,
 		SkuSSPresentationUDC:(flatten([(lib.getUdcNameAndValue(skuSSPresentationEntity, $.avpList, lib.getAvpListMap($.avpList) )[0]) 
 	if ($.avpList != null 

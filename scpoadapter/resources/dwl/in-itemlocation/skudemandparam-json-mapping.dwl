@@ -4,7 +4,7 @@ var skuDemandParamEntity = vars.entityMap.sku[0].skudemandparam[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.itemLocation map {
-  
+  (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
   ITEM: $.itemLocationId.item.primaryId,
   LOC: $.itemLocationId.location.primaryId,
   INDDMDUNITCOST: $.demandParameters.unitCost.value,

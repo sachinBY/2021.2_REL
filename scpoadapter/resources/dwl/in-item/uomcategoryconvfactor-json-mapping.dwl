@@ -19,7 +19,9 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			(TRADEITEMQUANTITY: itemLogisticUnit.tradeItemQuantity) if (itemLogisticUnit.tradeItemQuantity != null and itemLogisticUnit.tradeItemQuantity != ""),
 			(ITEM: item.itemIdentification.additionalTradeItemIdentification) if item.itemIdentification.additionalTradeItemIdentification.@additionalTradeItemIdentificationTypeCode == "BUYER_ASSIGNED" 
   			and not item.itemIdentification.additionalTradeItemIdentification == null,
-  			ACTIONCODE: itemLogisticUnitInformation.actionCode
+  			ACTIONCODE: itemLogisticUnitInformation.actionCode,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
+			
 		})
 	})
 }pluck($)))) filter sizeOf($) > 0 map ($.itemLogisticUnits orderBy ($.TRADEITEMQUANTITY)) map (logisticUnitInfo , index) -> {
@@ -46,7 +48,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 				      fail('mapping for ' ++ logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].LOGISTICUNITNAME ++ ' UOM is missing in database.')	
 			),
 			(RATIO: logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].TRADEITEMQUANTITY),
-			(ACTIONCODE: logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].ACTIONCODE)
+			(ACTIONCODE: logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].ACTIONCODE),
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	}),(flatten(flatten(flatten((payload.item map (item, itemIndex) -> {
 	itemLogisticUnitInformation:(item.itemLogisticUnitInformation map (itemLogisticUnitInformation , index) -> {
 		itemLogisticUnits:(itemLogisticUnitInformation.itemLogisticUnit map (itemLogisticUnit , index) -> {
@@ -73,7 +76,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
   			SOURCECATEGORY_DEPTH:  if (itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode != null and vars.uomShortLabels[itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode][0] == null) fail('mapping for ' ++ itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode ++ ' UOM is not present in the database.')
   			else if(itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode != null and itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode != "" and vars.uomShortLabels[itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode][0] != null) findCategory(vars.uomShortLabels[itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode][0]) else findCategory(30),
   			(RATIO_DEPTH: itemLogisticUnit.dimensionsOfLogisticUnit.depth.value as Number) if(itemLogisticUnit.dimensionsOfLogisticUnit.depth.value != null and itemLogisticUnit.dimensionsOfLogisticUnit.depth.value != ""),
-  			ACTIONCODE: itemLogisticUnitInformation.actionCode
+  			ACTIONCODE: itemLogisticUnitInformation.actionCode,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		})
 	})
 }pluck($)))) filter sizeOf($) > 0 map ($.itemLogisticUnits orderBy ($.TRADEITEMQUANTITY)) map (logisticUnitInfo , index) -> {
@@ -84,7 +88,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCEUOM: logisticUnitInfo[0].SOURCEUOM_WEIGHT,
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_WEIGHT,
 			RATIO: logisticUnitInfo[0].RATIO_WEIGHT,
-			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE
+			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		}),
 		logistics_vol:({
 			ITEM: logisticUnitInfo[0].ITEM,
@@ -93,7 +98,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCEUOM: logisticUnitInfo[0].SOURCEUOM_VOL,
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_VOL,
 			RATIO: logisticUnitInfo[0].RATIO_VOL,
-			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE
+			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		}),
 		logistics_depth:({
 			ITEM: logisticUnitInfo[0].ITEM,
@@ -102,7 +108,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCEUOM: logisticUnitInfo[0].SOURCEUOM_DEPTH,
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_DEPTH,
 			RATIO: logisticUnitInfo[0].RATIO_DEPTH,
-			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE
+			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		})
 	}pluck($))),flatten(flatten((payload.item map (item, itemIndex) -> {
 	conversions: (item.measurementTypeConversion map(measurementTypeConversion , index) -> {
@@ -124,7 +131,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 		(TARGETCATEGORY:  if (vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode ++ ' UOM is not present in the database.')
 			else findCategory(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0])
 		) if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != ""),
-		ACTIONCODE: item.documentActionCode
+		ACTIONCODE: item.documentActionCode,
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	})
 } pluck($))))])
 
@@ -150,7 +158,8 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
 		(TARGETCATEGORY:  if (vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode ++ ' UOM is not present in the database.')
 			else findCategory(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0])
 		) if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != ""),
-		ACTIONCODE: item.documentActionCode
+		ACTIONCODE: item.documentActionCode,
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	})
 } pluck($)))))  map (uomCategoryConvFactor, indexOfUomCategoryConvFactor) -> {
 			ITEM: uomCategoryConvFactor.ITEM,
@@ -159,5 +168,6 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
 			SOURCEUOM: uomCategoryConvFactor.SOURCEUOM,
 			TARGETCATEGORY: uomCategoryConvFactor.TARGETCATEGORY,
 			TARGETUOM: uomCategoryConvFactor.TARGETUOM,
-			ACTIONCODE: uomCategoryConvFactor.ACTIONCODE
+			ACTIONCODE: uomCategoryConvFactor.ACTIONCODE,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfUomCategoryConvFactor))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 			}

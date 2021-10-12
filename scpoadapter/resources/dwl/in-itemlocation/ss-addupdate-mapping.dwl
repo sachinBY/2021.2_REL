@@ -4,7 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var skuSSEntity = vars.entityMap.sku[0].skuss[0]
 ---
  (payload map (ss, indexOfss) -> {
- 	
+		INTEGRATION_STAMP: ss.INTEGRATION_STAMP,
 	    ITEM: if (ss.ITEM != null) ss.ITEM else default_value,
 	    LOC: if (ss.LOC != null) ss.LOC else default_value,
 	    EFF: if (ss.EFF != null) ss.EFF else default_value,

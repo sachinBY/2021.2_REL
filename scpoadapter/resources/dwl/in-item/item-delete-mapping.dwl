@@ -2,6 +2,7 @@
 output application/java  
 ---
 (payload map (item, indexOfItem) -> {
+	INTEGRATION_STAMP: item.INTEGRATION_STAMP,
     (DEFAULTUOM: item.DEFAULTUOM) if not item.DEFAULTUOM == null,
     (DESCR: item.DESCR) if not item.DESCR == null,
     (DISCRETESW: item.DISCRETESW) if not item.DISCRETESW == null,

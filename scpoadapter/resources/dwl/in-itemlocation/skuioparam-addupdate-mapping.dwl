@@ -3,7 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (skuio, indexOfss) -> {
- 	
+		INTEGRATION_STAMP: skuio.INTEGRATION_STAMP,
 	    ITEM: if (skuio.ITEM != null) skuio.ITEM else default_value,
 	    LOC: if (skuio.LOC != null) skuio.LOC else default_value,
 	    AVGRQSNSIZE: if (skuio.AVGRQSNSIZE != null) skuio.AVGRQSNSIZE else default_value,

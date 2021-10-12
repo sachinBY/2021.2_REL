@@ -8,7 +8,7 @@ flatten(flatten(payload.itemLocation map(itemLocation,indexOfItemLocation) ->
 {
     (conversion: itemLocation.effectiveInventoryParameters map (effectiveInventoryParameters, indexOfEffectiveInventoryParameters) ->
     {
-    	
+    	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfItemLocation))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
         ITEM: itemLocation.itemLocationId.item.primaryId,
         LOC: itemLocation.itemLocationId.location.primaryId,
         EFF: if (effectiveInventoryParameters.effectiveFromDateTime != null) effectiveInventoryParameters.effectiveFromDateTime else default_value,

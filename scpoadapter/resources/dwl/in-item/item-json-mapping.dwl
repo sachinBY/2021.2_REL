@@ -7,10 +7,8 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 import * from dw::Runtime
 ---
 (payload.item map (itm , index) -> {
-
-	(DEFAULTUOM: (if ( vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0] != null ) vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0] as Number
-  		else default_value)) 
-  		if (itm.tradeItemBaseUnitOfMeasure != null and (itm.documentActionCode == "ADD" or itm.documentActionCode == "CHANGE_BY_REFRESH")),
+  	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
+  	DEFAULTUOM: if ( [itm.tradeItemBaseUnitOfMeasure][0] != null ) (vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0]) else default_value,
 	DESCR: if (!isEmpty(itm.description filter ($.descriptionType == 'ITEM_NAME'))) (itm.description filter ($.descriptionType == 'ITEM_NAME')).value[0] else default_value,
 	DISCRETESW: if ( itm.operationalRules.isDiscrete != null and itm.operationalRules.isDiscrete == true ) 1 else default_value,
 	ITEM: itm.itemId.primaryId,
@@ -19,8 +17,7 @@ import * from dw::Runtime
 	PRIORITY: if ( itm.priority != null ) itm.priority else default_value,
 	STORAGEGROUP: if ( itm.classifications.itemFamilyGroup != null ) itm.classifications.itemFamilyGroup else default_value,
 	UNITSPERPALLET: if ( itm.itemLogisticUnitInformation.itemLogisticUnit.packageCodeType == "PX" and itm.itemLogisticUnitInformation.itemLogisticUnit.tradeItemQuantity.value != null ) itm.itemLogisticUnitInformation.itemLogisticUnit.tradeItemQuantity.value else default_value,
-	UOM: if ( vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0] == null ) default_value
-  		else vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0],
+	UOM: if ( [itm.tradeItemBaseUnitOfMeasure][0] != null ) (vars.uomShortLabels[itm.tradeItemBaseUnitOfMeasure][0]) else default_value,
 	VOL: if ( itm.tradeItemMeasurements.inBoxCubeDimension.value != null ) itm.tradeItemMeasurements.inBoxCubeDimension.value else default_value,
 	WGT: if ( itm.tradeItemMeasurements.tradeItemWeight.grossWeight.value != null ) itm.tradeItemMeasurements.tradeItemWeight.grossWeight.value else default_value,
 	(avplistUDCS: (lib.getUdcNameAndValue(itemEntity, itm.avpList, lib.getAvpListMap(itm.avpList))[0])) if (itm.avpList != null and (itm.documentActionCode == "ADD" or itm.documentActionCode == "CHANGE_BY_REFRESH") and itemEntity != null),

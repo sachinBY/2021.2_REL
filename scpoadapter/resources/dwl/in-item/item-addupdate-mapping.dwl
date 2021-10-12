@@ -4,7 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 
 ---
 (payload map (item, indexOfItem) -> {  	  	
-   
+   		INTEGRATION_STAMP: item.INTEGRATION_STAMP,
     	DEFAULTUOM: if(item.DEFAULTUOM != null) item.DEFAULTUOM else default_value,    
 	    DESCR:  if(item.DESCR != null) item.DESCR else default_value,
 	    DISCRETESW: if(item.DISCRETESW != null) item.DISCRETESW else default_value,
