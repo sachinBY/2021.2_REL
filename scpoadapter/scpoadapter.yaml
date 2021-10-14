@@ -26,7 +26,7 @@ bydm:
     
   inventory:
     aggregation:
-      enabled: true
+      enabled: false
       categories: "AVAILABLE_FOR_SALE"
   hist:
     aggregation:
