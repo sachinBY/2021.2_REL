@@ -6,6 +6,7 @@ var sourcingEntity = vars.entityMap.sourcing[0].sourcing[0]
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
 (payload.sourcing map (sourcing, sourcingIndex) -> {
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((sourcingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		ARRIVCAL: if(sourcing.arrivalCalendar != null) sourcing.arrivalCalendar
 				else default_value,
 		DEST: if(sourcing.sourcingId.dropOffLocation.locationId != null) sourcing.sourcingId.dropOffLocation.locationId

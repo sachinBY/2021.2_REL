@@ -2,7 +2,8 @@
 output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
-(payload map (resource, indexOfresource) -> {  	  	
+(payload map (resource, indexOfresource) -> { 
+		INTEGRATION_STAMP: resource.INTEGRATION_STAMP, 	  	
 	    ADJFACTOR: if(resource.ADJFACTOR != default_value) resource.ADJFACTOR as Number else default_value,
 	    ADDONCOST: if(resource.ADDONCOST != default_value) resource.ADDONCOST as Number else default_value, 
 	    CHECKMAXCAP:  if(resource.CHECKMAXCAP != default_value) resource.CHECKMAXCAP as Number else default_value,

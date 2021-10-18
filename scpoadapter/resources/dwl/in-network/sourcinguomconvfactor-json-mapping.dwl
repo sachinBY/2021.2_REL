@@ -21,6 +21,7 @@ flatten(flatten(flatten(flatten(payload.network map(network, networkIndex) -> {
 			RATIO: if (measurementTypeConversion.ratioOfTargetPerSource != null)
 				measurementTypeConversion.ratioOfTargetPerSource
 				else default_value,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((measurementTypeConversionIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			SOURCE: if(network.pickUpLocation.locationId != null) network.pickUpLocation.locationId
 				else default_value,
 			TRANSMODE: if(network.transportEquipmentTypeCode.value != null)
@@ -30,47 +31,47 @@ flatten(flatten(flatten(flatten(payload.network map(network, networkIndex) -> {
 				else default_value,
 			SOURCEUOM: if (measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 			           if(vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode ++ ' UOM is missing in database.')
-			           else  vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] as Number
+			           else  vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] as Number default default_value
 	 			   else if (measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 				        if(vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode ++ ' UOM is missing in database.')
-				        else vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0]   as Number
+				        else vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0]   as Number default default_value
 	 			   else if (measurementTypeConversion.sourceMeasurementUnitCode.currencyCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 				        if(vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.currencyCode ++ ' UOM is missing in database.')
-				        else vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0]   as Number
-	 			   else vars.uomShortLabels[p("bydm.network.default.sourceuom")][0] as Number,
+				        else vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0]   as Number default default_value
+	 			   else vars.uomShortLabels[p("bydm.network.default.sourceuom")][0] as Number default default_value,
 			SOURCECATEGORY: if (measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] as String][0] == null) 
 								fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] as String][0] as Number 
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.measurementUnitCode][0] as String][0] as Number default default_value 
 							else if(measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] == null)
 								 fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] as Number   
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] as Number default default_value   
 							else if(measurementTypeConversion.sourceMeasurementUnitCode.currencyCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0] as String][0] == null)
 								fail('mapping for ' ++ measurementTypeConversion.sourceMeasurementUnitCode.currencyCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0] as String][0] as Number  	
-							else uomToCategoryTypeConversion[vars.uomShortLabels[p("bydm.network.default.sourceuom")][0] as String][0] as Number,
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.sourceMeasurementUnitCode.currencyCode][0] as String][0] as Number default default_value  	
+							else uomToCategoryTypeConversion[vars.uomShortLabels[p("bydm.network.default.sourceuom")][0] as String][0] as Number default default_value,
 			TARGETUOM: if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 					          if(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode ++ ' UOM is missing in database.')
-				             else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0]   as Number
+				             else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0]   as Number default default_value
 	 			   	   else if (measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 				        	  if(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode ++ ' UOM is missing in database.')
-				       		 else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0]   as Number
+				       		 else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0]   as Number default default_value
 	 			   	  else if (measurementTypeConversion.targetMeasurementUnitCode.currencyCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH")) 
 				        	  if(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.currencyCode ++ ' UOM is missing in database.')
-				        	  else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0]   as Number
-	 			      else vars.uomShortLabels[p("bydm.network.default.targetuom")][0] as Number,
+				        	  else vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0]   as Number default default_value
+	 			      else vars.uomShortLabels[p("bydm.network.default.targetuom")][0] as Number default default_value,
 	 		TARGETCATEGORY: if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] as String][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] as String][0] as Number  
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0] as String][0] as Number default default_value  
 							else if(measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								 if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.targetMeasurementUnitCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] as Number   
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.timeMeasurementUnitCode][0] as String][0] as Number default default_value   
 							else if(measurementTypeConversion.targetMeasurementUnitCode.currencyCode != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 								if(uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0] as String][0] == null) fail('mapping for ' ++ measurementTypeConversion.targetMeasurementUnitCode.currencyCode ++ ' Category is missing in codeMappings.xml in uomToCategoryTypeConversion.')
-								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0] as String][0]  as Number   
-							else uomToCategoryTypeConversion[vars.uomShortLabels[p("bydm.network.default.targetuom")][0] as String][0] as Number,
+								else uomToCategoryTypeConversion[vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.currencyCode][0] as String][0]  as Number default default_value   
+							else uomToCategoryTypeConversion[vars.uomShortLabels[p("bydm.network.default.targetuom")][0] as String][0] as Number default default_value,
 			ITEM: if(sourcingInformation.sourcingItem.itemId != null) sourcingInformation.sourcingItem.itemId
 				else default_value,
 	sourcinguomconvfactorUDC:flatten([(lib.getUdcNameAndValue(sourcingUOMConvFactorEntity, network.avpList, lib.getAvpListMap(network.avpList))[0]) 

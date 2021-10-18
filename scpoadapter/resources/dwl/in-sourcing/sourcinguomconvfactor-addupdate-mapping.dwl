@@ -6,7 +6,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 
 (payload map (sourcinguomconvfactor, sourcinguomconvfactorIndex) -> {
 	
-	
+		INTEGRATION_STAMP: sourcinguomconvfactor.INTEGRATION_STAMP,
 		DEST: sourcinguomconvfactor.DEST,
 		ITEM: sourcinguomconvfactor.ITEM,
 		RATIO:  sourcinguomconvfactor.RATIO,

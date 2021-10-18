@@ -3,7 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
 (payload map (data, index) -> {
-		
+			INTEGRATION_STAMP: data.INTEGRATION_STAMP,
 			CAL: data.CAL,
 		    (ATTRIBUTE: data.ATTRIBUTE) if (data.ATTRIBUTE != null),   
 			(VALUE: data.VALUE as Number) if (data.VALUE != default_value),

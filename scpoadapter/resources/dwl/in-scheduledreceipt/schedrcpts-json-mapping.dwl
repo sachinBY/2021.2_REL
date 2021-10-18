@@ -8,13 +8,14 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 flatten(flatten(payload.scheduledReceipt filter($.status ==  null or $.status ==  "" or (lower($.status) == "open")) map (scheduledReceipt,indexOfScheduledReceipt) -> {
    (conversion: scheduledReceipt.lineItem map (scheduledReceiptLineItem,indexOfScheduledReceiptLineItem) -> {
 	ACTIONALLOWEDSW: "0",
+	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfScheduledReceiptLineItem))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	EXPDATE: if (scheduledReceiptLineItem.supplyExpirationDate != null 
 			 and funCaller.formatGS1ToSCPO(scheduledReceiptLineItem.supplyExpirationDate) != default_value
 			 ) 
 			 	(scheduledReceiptLineItem.supplyExpirationDate replace "Z" with("")) as Date {format: "yyyy-MM-dd", class : "java.sql.Date"} 
 			 else default_value,
 	EXPLODESW: if (scheduledReceiptLineItem.isDependentDemandRequired != null) 
-					scheduledReceiptLineItem.isDependentDemandRequired 
+					if(scheduledReceiptLineItem.isDependentDemandRequired == true) "1" else "0" 
 			   else default_value,
 	ITEM: if (scheduledReceipt.scheduledReceiptId.item.primaryId != null) 
 		  		scheduledReceipt.scheduledReceiptId.item.primaryId 

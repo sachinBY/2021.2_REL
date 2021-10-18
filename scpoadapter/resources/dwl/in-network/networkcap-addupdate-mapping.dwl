@@ -4,7 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 
 ---
 (payload map (netcap, indexOfNetcap) -> {
-		
+			INTEGRATION_STAMP: netcap.INTEGRATION_STAMP,
 	  		UOM: netcap.UOM,
 			MINCAP: netcap.MINCAP,
 			SOURCE: netcap.SOURCE,

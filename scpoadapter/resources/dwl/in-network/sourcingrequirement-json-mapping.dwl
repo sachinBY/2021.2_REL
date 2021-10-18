@@ -16,6 +16,7 @@ flatten(flatten(flatten(flatten(payload.network map (network, networkIndex) -> {
 		//})) filter sizeOf($) > 0,
 		DEST: if(network.dropOffLocation.locationId != null) network.dropOffLocation.locationId
 				else default_value,
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((resourceRequirementIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		EFF: if(sourcingInformation.sourcingDetails.effectiveFromDate != null)
 				(sourcingInformation.sourcingDetails.effectiveFromDate replace 'Z' with('')) as Date {format: "yyyy-MM-dd", class : "java.sql.Date"}
 				else default_value,

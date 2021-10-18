@@ -14,6 +14,7 @@ flatten(flatten(flatten(flatten (flatten (payload.resource map(res , index) ->{
 					and (res.documentActionCode == "ADD" or res.documentActionCode == "CHANGE_BY_REFRESH")
 					and attributeEntity != null
 				),
+				(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 				(CAL: res.resourceCalendar.calendarId) if(res.resourceCalendar.calendarId != null),
 				ACTIONCODE: res.documentActionCode,
 				PATTERNSEQNUM: patternIndex+1,

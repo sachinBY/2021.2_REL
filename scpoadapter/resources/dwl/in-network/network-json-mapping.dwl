@@ -8,7 +8,7 @@ var UOMConversion = vars.codeMap.UOMConversion
 var networkEntity = vars.entityMap.networkmap[0].network[0]
 ---
 (payload.network map (network, networkIndex) -> {
-	
+	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((networkIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	TRANSMODE: if(network.transportEquipmentTypeCode.value != null)
 					network.transportEquipmentTypeCode.value
 			   else default_value,

@@ -18,6 +18,7 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 			)])),
 			(CAL: res.resourceCalendar.calendarId) if(res.resourceCalendar.calendarId != null),
 			ACTIONCODE: res.documentActionCode,
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((patternIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			PATTERNSEQNUM: patternIndex+1,
 			(STARTDATE: pattern.startDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"}) if(pattern.startDate != null and funCaller.formatGS1ToSCPO(pattern.startDate) != default_value),
 			(ENDDATE: pattern.endDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"}) if(pattern.endDate != null and funCaller.formatGS1ToSCPO(pattern.endDate) != default_value),

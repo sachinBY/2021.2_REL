@@ -13,6 +13,7 @@ flatten(flatten(payload.calendar  filter ($.calendarType != null and calendartyp
 				calendar.calendarId
 			  else  
 			    default_value,
+			INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ calendarAttributeIndex ++ 'S') as Period) replace 'T' with '') [0 to 17],
 			PATTERNSEQNUM: calendarPatternIndex + 1,
 			ATTRIBUTE: if (calendarAttribute.attributeType != null) 
 					calendarAttribute.attributeType

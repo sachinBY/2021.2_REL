@@ -10,7 +10,7 @@ var sourcingReqEntity = vars.entityMap.sourcing[0].sourcingrequirement[0]
 flatten((payload.sourcing map (sourcing, sourcingIndex) -> {
 	(val:sourcing.sourcingDetails.resourceRequirement map()-> {
 		
-	
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((sourcingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		DEST: if(sourcing.sourcingId.dropOffLocation.locationId != null) sourcing.sourcingId.dropOffLocation.locationId
 				else default_value,
 		EFF: if(sourcing.sourcingDetails.effectiveFromDate != null and funCaller.formatGS1ToSCPO(sourcing.sourcingDetails.effectiveFromDate replace 'Z' with('')) != default_value)

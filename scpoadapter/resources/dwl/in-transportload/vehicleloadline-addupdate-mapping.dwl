@@ -3,7 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (vehicleLoadLine, indexOfVehicleLoadLineData) -> {
- 	
+ 		INTEGRATION_STAMP: vehicleLoadLine.INTEGRATION_STAMP,
 	 	DEST: vehicleLoadLine.DEST,
 		EXPDATE: vehicleLoadLine.EXPDATE,
 		ITEM: vehicleLoadLine.ITEM,

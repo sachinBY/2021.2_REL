@@ -4,7 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 
 ---
  (payload map (repnet, indexOfRepnet) -> {
-	
+		INTEGRATION_STAMP: repnet.INTEGRATION_STAMP,
 		TRANSMODE: repnet.TRANSMODE,
 		SOURCE: repnet.SOURCE,
 		DEST: repnet.DEST,

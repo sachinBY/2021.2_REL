@@ -14,7 +14,7 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 ---
 flatten(flatten(payload.network map (network, networkIndex) -> {
 	sourcing: (network.sourcingInformation map(sourcingInformation, sourcingInformationIndex) -> {
-		
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((sourcingInformationIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		DEST: if(network.dropOffLocation.locationId != null) network.dropOffLocation.locationId
 				else default_value,
 		DISC: if(sourcingInformation.sourcingDetails.effectiveUpToDate != null )

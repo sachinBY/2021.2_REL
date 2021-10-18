@@ -5,7 +5,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 
 (payload map (sourcingreq, sourcingIndex) -> {
-	
+		INTEGRATION_STAMP: sourcingreq.INTEGRATION_STAMP,
 		DEST: sourcingreq.DEST,
 		EFF: sourcingreq.EFF,
 		ITEM: sourcingreq.ITEM,

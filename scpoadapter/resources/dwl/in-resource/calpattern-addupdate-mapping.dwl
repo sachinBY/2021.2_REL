@@ -3,7 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
 (payload map {
-	
+		INTEGRATION_STAMP: $.INTEGRATION_STAMP,
 		CAL: $.CAL,    
 		DESCR: $.DESCR,
 	    STARTDATE: $.STARTDATE,   

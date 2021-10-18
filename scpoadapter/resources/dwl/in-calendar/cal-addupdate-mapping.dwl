@@ -4,7 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 (payload map (calendar, calendarIndex) -> {
 	
-		CAL: calendar.CAL,    
+		CAL: calendar.CAL,  
+		INTEGRATION_STAMP: calendar.INTEGRATION_STAMP,  
 	    DESCR:	calendar.DESCR,
 	    TYPE:	calendar.TYPE,
 	    MASTER:	calendar.MASTER,

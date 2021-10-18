@@ -5,6 +5,7 @@ var suppOrderEntity = vars.entityMap.suppordersku[0].suppordersku[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.supplementalOrder map { 
+		  (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		  ITEM: $.supplementalOrderId.itemLocationId.item.primaryId as String,
 		  LOC: $.supplementalOrderId.itemLocationId.location.primaryId as String,
 		  SUPPORDERID: $.supplementalOrderId.additionalOrderId,

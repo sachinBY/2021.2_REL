@@ -22,6 +22,7 @@ flatten(flatten(payload.network map (network, networkIndex) -> {
 		MINCAP: if(networkCapacity.minimumCapacity.value != null)
 			networkCapacity.minimumCapacity.value
 			else default_value,
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((networkCapcityIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		SOURCE: if(network.pickUpLocation.locationId != null) network.pickUpLocation.locationId
 				else default_value,
 		TRANSMODE: if (network.transportEquipmentTypeCode.value == "*UNKNOWN") 

@@ -10,6 +10,7 @@ flatten(flatten((payload.transportLoad filter()->($.loadStatusCode=="PLANNED" or
 			tradeItems: (shipmentItem.transactionalTradeItem map (transactionalTradeItem, transactionalTradeItemIndex) -> {
 				(if(transactionalTradeItem.transactionalItemData != null){
 				transItemData: (transactionalTradeItem.transactionalItemData map(transactionalItemData,transactionalItemDataIndex)-> {
+					(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((transactionalItemDataIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 					DEST: if ( transportLoadShipment.shipTo.primaryId != null ) transportLoadShipment.shipTo.primaryId else default_value,
 					EXPDATE: if ( transactionalItemData.itemExpirationDate != null ) transactionalItemData.itemExpirationDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"} else default_value,
 					ITEM: transactionalTradeItem.primaryId,

@@ -2,6 +2,7 @@
 output application/json
 ---
  (payload map (schedReceipt, index) -> {
+ 	INTEGRATION_STAMP: schedReceipt.INTEGRATION_STAMP,
   	EXPDATE: schedReceipt.EXPDATE,
 	ITEM: schedReceipt.ITEM,
 	LOC: schedReceipt.LOC,

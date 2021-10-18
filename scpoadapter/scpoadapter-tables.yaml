@@ -1,10 +1,21 @@
 scpo:
   inbound:
-    csv:
-      path: "c:\\csvdata"
+    bulk:
+      processing:
+        done:
+          retries: 5
+          retry-gap: 60000 # in milliseconds
+        directories:
+          format: "yyyy-MM-dd-HH-mm"  
+        groupBy:
+          instanceId: false  
+        csv:
+          path: "c:\\csvdata"
+        archive:
+          path: "c:\\archive"  
     bydm_billofmaterial:
       enable:
-        csv: true
+         csv: true
       tables: "bom,altbom"
       parenttable: "bom"
     bydm_calendar:
@@ -19,12 +30,12 @@ scpo:
       parenttable: "custorder" 
     bydm_demandchannel:
       enable:
-        csv: true
+         csv: true
       tables: "dmdgroup"
       parenttable: "dmdgroup"
     bydm_demandforecastunit:
       enable:
-        csv: true
+         csv: true
       tables: "dfuview,dfutosku"
       parenttable: "dfuview"
     bydm_demandgroupparameters:
@@ -34,7 +45,7 @@ scpo:
       parenttable: "skudmdgroupparam"
     bydm_demandunit:
       enable:
-        csv: true
+         csv: true
       tables: "dmdunit"
       parenttable: "dmdunit"  
     bydm_dynamicdeploymentsourcing:
@@ -44,142 +55,142 @@ scpo:
       parenttable: "dyndepsrc"
     bydm_eventgroup:
       enable:
-        csv: true
+         csv: true
       tables: "movingevent,movingeventdata,dfumovingeventmap"
       parenttable: "movingevent"
     bydm_forecast2:
       enable:
-        csv: true
+         csv: true
       tables: "fcst,skuexternalfcst"
       parenttable: "fcst"
     bydm_forecasthistory:
       enable:
-        csv: true
+         csv: true
       tables: "skuhistfcst"
       parenttable: "skuhistfcst"
     bydm_inventoryonhand2:
       enable:
-        csv: true
+         csv: true
       tables: "inventory"
       parenttable: "inventory"
     bydm_inventorytransaction2:
       enable:
-        csv: true
+         csv: true
       tables: "hist"
       parenttable: "hist"
     bydm_item:
       enable:
-        csv: true 
+         csv: true 
       tables: "item,dmdunit,uomcategoryconvfactor"
       parenttable: "item"
     bydm_itemhierarchylevelmember:
       enable:
-        csv: true
+         csv: true
       tables: "dmdunit"
       parenttable: "dmdunit"   
     bydm_itemlocation:
       enable:
-        csv: true
+         csv: true
       tables: "sku,skudemandparam,skudeploymentparam,skueffinventoryparam,skuplanningparam,skusafetystockparam,skuperishableparam,skuioparam,storagerequirement,ss,skueffioparam,sspresentation"
       parenttable: "sku"       
     bydm_itemlocationdemandgroupmap:
       enable:
-        csv: true
+         csv: true
       tables: "itemlocdmdgroupmap"
       parenttable: "itemlocdmdgroupmap"  
     bydm_location:
       enable:
-        csv: true
+         csv: true
       tables: "loc"
       parenttable: "loc"
     bydm_measurement:
       enable:
-        csv: true
+         csv: true
       tables: "uom,uomcategory"
       parenttable: "uom"    
     bydm_network:
       enable:
-        csv: true
+         csv: true
       tables: "network,networkcap,sourcing,sourcingrequirement,sourcinguomconvfactor"
       parenttable: "network"
     bydm_orderclose:
       enable:
-        csv: true
+         csv: true
       tables: "histtransactual,histtransplan"
       parenttable: "histtransactual"
     bydm_party:
       enable:
-        csv: true
+         csv: true
       tables: "cust"
       parenttable: "cust"
     bydm_plannedsupply:
       enable:
-        csv: true
+         csv: true
       tables: "planpurch,planarriv"
       parenttable: "planpurch"
     bydm_prepacksupply:
       enable:
-        csv: true
+         csv: true
       tables: "allocsupplyprepack,allocsupplyprepackdetails"
       parenttable: "allocsupplyprepack"
     bydm_pricespecification2:
       enable:
-        csv: true
+         csv: true
       tables: "dfubaseprice,dfueffprice"
       parenttable: "dfubaseprice"
     bydm_productionrouting:
       enable:
-        csv: true
+         csv: true
       tables: "productionmethod,productionstep,altproductionstep"
       parenttable: "productionmethod"
     bydm_promotion:
       enable:
-        csv: true
+         csv: true
       tables: "ddeprofile,dfuddemap"
       parenttable: "ddeprofile"
     bydm_purchasemethod:
       enable:
-        csv: true
+         csv: true
       tables: "purchmethod"
       parenttable: "purchmethod"
     bydm_purchaseorder:
       enable:
-        csv: true
+         csv: true
       tables: "purchorder"
       parenttable: "purchorder"
     bydm_relation:
       enable:
-        csv: true
+         csv: true
       tables: "supersession,dfumaintcopydfu"
       parenttable: "supersession"
     bydm_resource:
       enable:
-        csv: true
+         csv: true
       tables: "cal,res,calpattern,calattribute"
       parenttable: "res"
     bydm_scheduledreceipt:
       enable:
-        csv: true
+         csv: true
       tables: "schedrcpts,schedrcptsdetail"
       parenttable: "schedrcpts"
     bydm_supplementalorder:
       enable:
-        csv: true
+         csv: true
       tables: "suppordersku"
       parenttable: "suppordersku"  
     bydm_sourcing:
       enable:
-        csv: true
+         csv: true
       tables: "sourcing,sourcingrequirement,sourcinguomconvfactor"
       parenttable: "sourcing"        
     bydm_transportequipment:
       enable:
-        csv: true
+         csv: true
       tables: "transmode,transmodecap"
       parenttable: "transmode"
     bydm_transportload:
       enable:
-        csv: true
+         csv: true
       tables: "vehicleloadline,vehicleload"
       parenttable: "vehicleload"
   metadata:

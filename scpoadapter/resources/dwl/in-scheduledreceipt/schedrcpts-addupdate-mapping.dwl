@@ -4,6 +4,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var scheduledReceiptEntity = vars.entityMap.schedrcpts[0].schedrcpts[0]	
 ---
  (payload map (schedReceipt, index) -> {
+ 		INTEGRATION_STAMP: schedReceipt.INTEGRATION_STAMP,
 		ACTIONALLOWEDSW:schedReceipt.ACTIONALLOWEDSW,
 	  	EXPDATE: schedReceipt.EXPDATE,
 		EXPLODESW: if(schedReceipt.EXPLODESW == "true") 1 else if (schedReceipt.EXPLODESW == "false") 0 else schedReceipt.EXPLODESW,

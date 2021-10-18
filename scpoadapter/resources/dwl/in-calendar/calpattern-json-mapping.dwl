@@ -15,6 +15,7 @@ flatten(payload.calendar filter ($.calendarType != null and calendartypeCode[$.c
 			    default_value,
 		//Check how to generate the sequence number PATTERNSEQNUM
 		PATTERNSEQNUM: calendarPatternIndex+1,
+		INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ calendarPatternIndex ++ 'S') as Period) replace 'T' with '') [0 to 17],
 		STARTDATE: if (calendarPattern.startDate != null) 
 					calendarPattern.startDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"}
 			   else 

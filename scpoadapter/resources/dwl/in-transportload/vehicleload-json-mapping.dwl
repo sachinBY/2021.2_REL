@@ -14,6 +14,7 @@ flatten(flatten(payload.transportLoad filter()->($.loadStatusCode=="PLANNED" or 
 					default_value,
 	DESCR: if (transportLoad.note.value != null) transportLoad.note.value 
 		   else default_value,
+	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((transportLoadIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	DESTSTATUS: default_value,
 	EXPORTED: default_value,
 	LBSOURCE: default_value,

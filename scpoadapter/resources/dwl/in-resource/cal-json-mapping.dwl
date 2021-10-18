@@ -13,6 +13,7 @@ flatten (flatten (payload.resource map(res , index) ->{
 							and calEntity != null),
 			
 			(CAL: res.resourceCalendar.calendarId) if(res.resourceCalendar.calendarId != null),
+			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			DESCR_CAL: if(res.resourceCalendar.description.value != null) res.resourceCalendar.description.value else default_value,
 			TYPE: if(res.resourceCalendar.calendarType == 'PRODUCTION_CAPACITY') 10 else default_value,
 			MASTER: if(res.resourceCalendar.masterCalendar != null) res.resourceCalendar.masterCalendar else default_value,

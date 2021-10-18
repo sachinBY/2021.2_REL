@@ -12,7 +12,7 @@ var sourcingUOMConvFactorEntity = vars.entityMap.sourcing[0].sourcinguomconvfact
 
 flatten((payload.sourcing map (sourcing, sourcingIndex) -> {
 	(val:sourcing.sourcingDetails.measurementTypeConversion map()-> {
-	
+		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((sourcingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		DEST: if(sourcing.sourcingId.dropOffLocation.locationId != null) sourcing.sourcingId.dropOffLocation.locationId
 				else default_value,
 		ITEM: if(sourcing.sourcingId.item.itemId != null) sourcing.sourcingId.item.itemId

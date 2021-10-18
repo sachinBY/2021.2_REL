@@ -11,6 +11,7 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 			calendar.calendarId
 		  else  
 		    default_value,
+	INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ calendarIndex ++ 'S') as Period) replace 'T' with '') [0 to 17],
 	DESCR: if (calendar.description.value != null) 
 				calendar.description.value
 		   else 
