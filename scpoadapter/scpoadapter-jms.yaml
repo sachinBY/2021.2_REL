@@ -24,7 +24,7 @@ jms:
 scpo:
   intermediateQueue:
     enable: "true"
-    brokerURL: ailover:(tcp://localhost:61616)?jms.prefetchPolicy.all=50
+    brokerURL: failover:(tcp://localhost:61616)?jms.prefetchPolicy.all=50
     user: admin
     maxConnections: "5"
     concurrentConsumers: "3"
