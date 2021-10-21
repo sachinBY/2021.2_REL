@@ -12,11 +12,11 @@ mbJmsComponent:
 jms:
   queue:
     mb:
-      out: MB-SCPO?consumer.prefetchSize=10
-      in: SCPO-MB?consumer.prefetchSize=10
-      error: SCPO-DLQMB?consumer.prefetchSize=10
+      out: MB-SCPO
+      in: SCPO-MB
+      error: SCPO-DLQMB
     scpo:
-      ack: ACK-SCPO?consumer.prefetchSize=10  
+      ack: ACK-SCPO
   outbound:
     endpoint:
       type: queue
