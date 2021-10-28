@@ -43,7 +43,7 @@ fun dmdunit (item, demandUnitInformation, index) = {
 	if (item.itemHierarchyInformation != null 
 		and (item.documentActionCode == "ADD" or item.documentActionCode == "CHANGE_BY_REFRESH") and (p('bydm.dmdunit.process.ancestry') as Boolean default false) == true)])),
         ACTIONCODE: item.documentActionCode,
-        (INTEGRATION_STAMP: log((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
+        (INTEGRATION_STAMP: (vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period) as String{format:"yyyy-MM-dd HH:mm:ss"})
 }
 ---
 flatten(flatten((payload.item map (item, itemIndex) -> {

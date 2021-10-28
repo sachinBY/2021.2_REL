@@ -17,7 +17,7 @@ arr:(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffective
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		ITEM: itemLocation.itemLocationId.item.primaryId,
 		LOC: itemLocation.itemLocationId.location.primaryId,
-		UNITCOST: log(eff.unitCost.value),
+		UNITCOST: eff.unitCost.value,
 		STOCKOUTPENALTY: eff.stockOutPenaltyAmount.value,
 		REVIEWPERIOD: if(eff.reviewPeriodDuration.value != null) 
 						if(eff.reviewPeriodDuration.timeMeasurementUnitCode != null) 		   		   			

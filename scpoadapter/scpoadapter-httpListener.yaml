@@ -6,8 +6,10 @@ api:
   config: "connect-scpo-adapter-https-shared-listener-internal"
   http:
     port: "9091"
+    host: "localhost"
   https:
     port: "9092"
+    host: "localhost"
     timeout: "30000"
   autodiscovery:
     id: "xxxx"

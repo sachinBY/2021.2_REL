@@ -1,6 +1,6 @@
 mbJmsComponent:
   queue:
-    brokerURL: failover:(tcp://localhost:61616)?jms.prefetchPolicy.all=3
+    brokerURL: tcp://localhost:61616
     user: admin
     maxConnections: "5"
     concurrentConsumers: "3"
@@ -16,7 +16,7 @@ jms:
       in: SCPO-MB
       error: SCPO-DLQMB
     scpo:
-      ack: ACK-SCPO
+      ack: ACK-SCPO  
   outbound:
     endpoint:
       type: queue
@@ -24,7 +24,7 @@ jms:
 scpo:
   intermediateQueue:
     enable: "true"
-    brokerURL: failover:(tcp://localhost:61616)?jms.prefetchPolicy.all=3
+    brokerURL: tcp://localhost:61616
     user: admin
     maxConnections: "5"
     concurrentConsumers: "3"

@@ -1,0 +1,121 @@
+# Properties relating to HTTP
+
+server:
+  listener: 
+    #Controls whether api endpoint accepts HTTP or HTTPS
+    config: "HTTPS_Listener_config"
+    #config: "HTTP_Listener_config"
+
+    #Controls whether request accepts only Keystore or with Truststore
+    context: "HTTPS_Listener_TLS_Context"
+    #context: "HTTPS_Listener_TLS_Context_with_Trust"
+
+    http:
+      host: "md1npdvjce01.dev.corp.local"
+      port: "8086"
+
+    https:
+      host: "md1npdvjce01.dev.corp.local"
+      port: "8085"
+      tls:
+        keyStore:
+          path: "https/keystore.jks"
+        trustStore:
+          path: "https/truststore.jks"
+
+  requester:
+    #Controls whether request accepts HTTP or HTTPS
+    config: "HTTPS_Requester_config"
+    #config: "HTTP_Requester_config"
+    
+    #Controls whether request accepts only Trustore or with keystore
+    context: "HTTPS_Requester_TLS_Context"
+    #context: "HTTPS_Requester_TLS_Context_with_Trust"
+
+    http:
+      host: "md1npdvjce01.dev.corp.local"
+      port: "8086"
+
+    https:
+      host: "md1npdvjce01.dev.corp.local"
+      port: "8085"
+      tls:
+        keyStore:
+          path: "https/keystore.jks"
+        trustStore:
+          path: "https/truststore.jks"
+    
+webcontent:
+  path: "web"
+  
+response:
+  header:
+    content_security_policy:
+      # default alowed source for files : by default it will reda the file from same origion
+      default_src: "\" default-src 'self' ;\""
+      #set the font src
+      font_src: "\" font-src 'self' data:; \""
+      # source of which script file can execute.
+      script_src:  "\"script-src 'self'   ;\""
+      # source from where it can read the style file.
+      style_src:   "\"style-src 'self' 'unsafe-inline'  ;\""
+      # from where it can load the images. it has to be self only.
+      img_src:     "\"img-src 'self';\""
+      frame_src:   "\"frame-src   ;\""
+      # on which server it can make a connection request. it shoud contain self, liam and message store url only.
+      connect_src: "\"connect-src 'self' <message-store-url> <liam-authority-url> <liam-scope-url>\""
+
+# DataBase Config
+# Uncomment the MSDatabase config(line no 70 to 83) and configure if using basic Auth.
+#MSDatabase:
+  #required: "true"
+  #url: "jdbc:sqlserver://localhost:1433;databaseName=test"
+  #driverClassName: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+  #reconnectionAttempts: "1"
+      
+  #connection:
+    #maxPoolSize: "100"
+    #minPoolSize: "10"
+    #preparedStatementCacheSize: "10"
+    #maxWait: "10"
+    #acquireIncrement: "2"
+
+#queryTimeout: "500"
+
+MSDatabase:
+  # required field should be true if using basic Auth or else false.
+  required: "true"
+  url: "jdbc:oracle:thin:@MD1NPDVJCE01:1521:o19c01"
+  driverClassName: "oracle.jdbc.driver.OracleDriver"
+  reconnectionAttempts: "1"
+      
+  connection:
+    maxPoolSize: "100"
+    minPoolSize: "10"
+    preparedStatementCacheSize: "10"
+    maxWait: "10"
+    acquireIncrement: "2"
+
+
+MSserver:
+  requester: 
+  #Controls whether MS api endpoint accepts HTTP or HTTPS
+    config: "HTTPS_MS_Requester_config"
+    #config: "HTTP_MS_Requester_config"
+    
+  http:
+    host: "md1npdvjce01.dev.corp.local"
+    port: "9831"
+
+  https:
+    host: "md1npdvjce01.dev.corp.local"
+    port: "9830"
+    tls:
+      #Controls whether request accepts only Trustore or with keystore
+      context: "HTTPS_MS_Requester_TLS_Context"
+      #context: "HTTPS_MS_Requester_TLS_Context_with_Trust"
+      keyStore:
+        path: "https/keystore.jks"
+      trustStore:
+        path: "https/truststore.jks"
+        
