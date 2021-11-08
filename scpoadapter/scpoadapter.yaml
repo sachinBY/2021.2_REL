@@ -6,7 +6,7 @@ bydm:
     default:
       timemeasurementunitcode: "sec"         
   message:
-    size: "1000"     
+    size: "100"     
   network:
     default:
       transmode: " "
