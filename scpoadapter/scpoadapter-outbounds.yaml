@@ -51,7 +51,7 @@ scpo:
     ordersku:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     orderskudetail:
       receivers: 'HOST.GLOBAL'
@@ -60,43 +60,43 @@ scpo:
     projorderexception:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrderException'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     projordersku:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     projorderskudetail:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
       currencycode: 'USD'
     projorderskutotal:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     projordersummary:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     projordersummarydetail:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     projordertotal:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.3.0'
     sku:
       receivers: 'HOST.GLOBAL'
       messagetype: 'itemLocation'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0'
     skuprojstatic:
       receivers: 'HOST.GLOBAL'
@@ -105,7 +105,7 @@ scpo:
     skustatstatic:
       receivers: 'HOST.GLOBAL'
       messagetype: 'itemLocationStatistics'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.4.0'
     depdmdstatic:
       receivers: 'HOST.GLOBAL'
@@ -118,21 +118,21 @@ scpo:
     fcstorder:
       receivers: 'LCT.GLOBAL'
       messagetype: 'nettedForecast2'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0'
     skueffinventoryparam:
       receivers: 'LCT.GLOBAL'
       messagetype: 'itemLocationEffectiveInventoryParameters'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0'
     inventory:
       receivers: 'LCT.GLOBAL'
       messagetype: 'inventoryOnHand2'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0' 
     dfutoskufcstwide:
       receivers: 'HOST.GLOBAL'   
       messagetype: 'forecast2'    
       identifier: 'BYDM 2021.5.0'
       periods: "52" 
-      format: 'bydm' 
+      format: 'csv' 
