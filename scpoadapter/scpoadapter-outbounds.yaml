@@ -70,7 +70,7 @@ scpo:
     projorderskudetail:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'csv'
+      format: 'bydm'
       identifier: 'BYDM 2021.3.0'
       currencycode: 'USD'
     projorderskutotal:
@@ -81,7 +81,7 @@ scpo:
     projordersummary:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'csv'
+      format: 'bydm'
       identifier: 'BYDM 2021.3.0'
     projordersummarydetail:
       receivers: 'HOST.GLOBAL'
@@ -91,7 +91,7 @@ scpo:
     projordertotal:
       receivers: 'HOST.GLOBAL'
       messagetype: 'recommendedPurchaseOrder'
-      format: 'csv'
+      format: 'bydm'
       identifier: 'BYDM 2021.3.0'
     sku:
       receivers: 'HOST.GLOBAL'
