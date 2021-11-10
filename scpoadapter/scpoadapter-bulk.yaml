@@ -2,7 +2,7 @@ bulk:
   content:
     type: "BYDM"
   notification:
-    enabled: "false"
+    enabled: "true"
     identifier: "BYDM 2021.2.0"
   serviceName: "SCPO-GLOBAL"
   serviceType: "SCPO"
