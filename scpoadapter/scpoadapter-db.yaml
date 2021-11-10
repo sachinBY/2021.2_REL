@@ -4,6 +4,7 @@ scpo:
   db:
     type: ""
     blockSize: "100"
+    fetchSize: "1000"
     batchCommitSize: "1000"
     batchExecuteMaxRetrial: "3"
     maxAllowedErrorsInBatch: "10"
