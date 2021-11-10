@@ -5,23 +5,23 @@ scpo:
       receivers: 'HOST.GLOBAL'
       messagetype: 'forecast2'
       identifier: 'BYDM 2021.5.0'
-      format: 'bydm'
+      format: 'csv'
     dfutoskufcst:
       receivers: 'HOST.GLOBAL'
       preprocessing: true
       messagetype: 'forecast2'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0'
     recship:
       receivers: 'HOST.GLOBAL'
       messagetype: 'plannedSupply'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.5.0'
     vehicleloadline:
       receivers: 'HOST.GLOBAL'
       messagetype: 'plannedSupply'
       identifier: 'BYDM 2021.5.0'
-      format: 'bydm'
+      format: 'csv'
     planarriv:
       receivers: 'HOST.GLOBAL'
       messagetype: 'plannedSupply'
@@ -37,7 +37,7 @@ scpo:
     skuhist:
       receivers: 'HOST.GLOBAL'
       messagetype: 'demandHistory'
-      format: 'bydm'
+      format: 'csv'
       identifier: 'BYDM 2021.2.0'
     item:
       receivers: 'HOST.GLOBAL'
