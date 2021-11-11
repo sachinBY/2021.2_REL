@@ -9,4 +9,4 @@ var columns = (keys map (key , index) ->
 	}
 ).*key joinBy (',')
 ---
-"options(skip = 1, errors=999999999, bindsize=1818000000, readsize=1818000000, parallel=true) load data infile '" ++ (vars.deleteCSVPath) ++ "'" ++ if (not (server.osName startsWith 'Windows')) "\"STR x'0D'\"" else "" ++ " append into table " ++ p('scpo.schema.staging.' ++ lower(vars.tableName) ++ '.update') ++ " fields terminated by ',' optionally enclosed by '\"' TRAILING NULLCOLS (" ++ columns ++ ")"
+"options(skip = 1, errors=999999999," ++ "bindsize=" ++ p("sqlldr.bindsize") ++ ",readsize=" ++ p("sqlldr.readsize") ++", parallel=true) load data infile '" ++ (vars.deleteCSVPath) ++ "'" ++ if (not (server.osName startsWith 'Windows')) "\"STR x'0D'\"" else "" ++ " append into table " ++ p('scpo.schema.staging.' ++ lower(vars.tableName) ++ '.update') ++ " fields terminated by ',' optionally enclosed by '\"' TRAILING NULLCOLS (" ++ columns ++ ")"
