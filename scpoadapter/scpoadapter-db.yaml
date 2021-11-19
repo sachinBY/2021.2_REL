@@ -15,11 +15,11 @@ scpo:
       errors:
         msg: "Continuous Errors in the batch"
     oracle:
-      host: md1npdvjce01
+      host: md1npdvcid02
       port: "1521"
-      instance: o19c01
-      user: SCPOMGR
-      staging-user: IGPMGR
+      instance: O19C01
+      user: TST_SCPOMGR
+      staging-user: TST_IGPMGR
       max:
         idle:
           time:
