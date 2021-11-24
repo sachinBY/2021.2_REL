@@ -11,7 +11,9 @@ if (payload."type"[0] == "PLAN_ARRIVAL")
 			scpoColumnName: value.scpoColumnName,
 			scpoColumnValue: if ((lib.mapHostToSCPO(plannedsupply, (value.hostColumnName splitBy "/"), 0)) != null) (lib.mapHostToSCPO(plannedsupply, (value.hostColumnName splitBy "/"), 0)) else default_value,
 			(dataType: value.dataType) if ((lib.mapHostToSCPO(plannedsupply, (value.hostColumnName splitBy "/"), 0)) != null),
-		}), 
+		}),
+		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+		MS_REF: vars.storeMsgReference.messageReference, 
 		ITEM: if (plannedsupply."plannedSupplyId.item.primaryId" != null and plannedsupply."plannedSupplyId.item.primaryId" != "")  
 				plannedsupply."plannedSupplyId.item.primaryId"
 			 else default_value,

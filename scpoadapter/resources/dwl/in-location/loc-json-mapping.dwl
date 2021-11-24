@@ -6,6 +6,8 @@ var locEntity = vars.entityMap.loc[0].loc[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.location map {
+  (MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+  (MS_REF: vars.storeMsgReference.messageReference),
   (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
   (BORROWINGPCT: $.planningDetails.borrowingPercentage) 
   				if( $.planningDetails.borrowingPercentage != "" and $.planningDetails.borrowingPercentage != null),

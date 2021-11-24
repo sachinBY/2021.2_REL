@@ -5,6 +5,8 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 (payload.relation filter ($.relationId.relationType == 'SUPERSESSION') map (relation, relationIndex) -> {
+			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+			MS_REF: vars.storeMsgReference.messageReference,	
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((relationIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
             ALTITEMPRIORITY: if(relation.priority != null) relation.priority as Number else default_value,
             DISC: if(relation.effectiveUpToDate != null) relation.effectiveUpToDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"} else default_value,

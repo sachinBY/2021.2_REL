@@ -4,6 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var scheduledReceiptDetailEntity = vars.entityMap.schedrcpts[0].schedrcptsdetail[0]	
 ---
  (payload map (schedReceiptDetail, index) -> {
+ 		MS_BULK_REF: schedReceiptDetail.MS_BULK_REF,
+		MS_REF: schedReceiptDetail.MS_REF,	
  		INTEGRATION_STAMP: schedReceiptDetail.INTEGRATION_STAMP,
 	  	EXPDATE: schedReceiptDetail.EXPDATE,
 		ITEM: schedReceiptDetail.ITEM,

@@ -3,6 +3,8 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (dmdunit, indexOfdmdunit) -> {
+ 	    MS_BULK_REF: dmdunit.MS_BULK_REF,
+		MS_REF: dmdunit.MS_REF,
 		INTEGRATION_STAMP: dmdunit.INTEGRATION_STAMP,
 	  	DMDUNIT: if (dmdunit.DMDUNIT != null) dmdunit.DMDUNIT else default_value,
 	    DESCR: if (dmdunit.DESCR != null) dmdunit.DESCR else default_value,

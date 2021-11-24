@@ -11,7 +11,8 @@ flatten (flatten (payload.resource map(res , index) ->{
 			(avplistCalUDCS:(lib.getUdcNameAndValue(calEntity, res.avpList, lib.getAvpListMap(res.avpList))[0]))
 							if (res.avpList != null and (res.documentActionCode == "ADD" or res.documentActionCode == "CHANGE_BY_REFRESH")
 							and calEntity != null),
-			
+			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+			MS_REF: vars.storeMsgReference.messageReference,	
 			(CAL: res.resourceCalendar.calendarId) if(res.resourceCalendar.calendarId != null),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			DESCR_CAL: if(res.resourceCalendar.description.value != null) res.resourceCalendar.description.value else default_value,

@@ -3,6 +3,8 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
 (payload map (data, index) -> {
+			MS_BULK_REF: data.MS_BULK_REF,
+			MS_REF: data.MS_REF,	
 			INTEGRATION_STAMP: data.INTEGRATION_STAMP,
 			CAL: data.CAL,
 		    (ATTRIBUTE: data.ATTRIBUTE) if (data.ATTRIBUTE != null),   

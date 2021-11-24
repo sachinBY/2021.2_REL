@@ -8,6 +8,8 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 flatten(flatten(payload.eventGroup  map (eventGroup, index) -> {
 	movingevents: (eventGroup.event filter ($.isMovingEvent == true) map (eventData, indexOfEvent) -> {
 		movingeventlocations: (eventGroup.eventLocation map (eventLocationData, indexOfEventLocation) -> {
+		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+		MS_REF: vars.storeMsgReference.messageReference,
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		DMDUNIT: if(eventLocationData.demandUnit != null) eventLocationData.demandUnit else "*UNKNOWN",
 		DMDGROUP: if(eventLocationData.demandChannel != null) eventLocationData.demandChannel else "*UNKNOWN",

@@ -25,7 +25,7 @@ bulk:
   callback:
     # supported possible values are AzureBlob, FILE
     protocol: "FILE"
-    ingestion: 
+    ingestion:
       config: "HTTPS_Ingestion_Service_Request_configuration"
       #config: "HTTP_Ingestion_Service_Request_configuration"
       host: "localhost"

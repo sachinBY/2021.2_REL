@@ -5,6 +5,8 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 var locEntity = vars.entityMap.loc[0].loc[0]
 ---
  (payload map (loc, indexOfLoc) -> {
+		MS_BULK_REF: loc.MS_BULK_REF,
+		MS_REF: loc.MS_REF,
   		INTEGRATION_STAMP: loc.INTEGRATION_STAMP,
   		BORROWINGPCT: if (loc.BORROWINGPCT != null) loc.BORROWINGPCT else default_value,
 	    CURRENCY: if (loc.CURRENCY != null) loc.CURRENCY else default_value,

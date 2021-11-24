@@ -5,6 +5,8 @@ var skuEntity = vars.entityMap.sku[0].sku[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.itemLocation map {
+		  MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+		  MS_REF: vars.storeMsgReference.messageReference,	
 		  (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		  CREATIONDATE: $.creationDateTime as DateTime as String,
 		  ENABLEOPT: if ($.businessInstanceId != null) $.businessInstanceId as Number else default_value,

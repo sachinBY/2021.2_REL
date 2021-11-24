@@ -4,6 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
  (flatten(payload) map (skuDmdGroup, indexOfsku) -> {
+ 		MS_BULK_REF: skuDmdGroup.MS_BULK_REF,
+		MS_REF: skuDmdGroup.MS_REF,
  		INTEGRATION_STAMP: skuDmdGroup.INTEGRATION_STAMP,
 	  	DMDCAL: skuDmdGroup.DMDCAL ,
 		DMDGROUP: skuDmdGroup.DMDGROUP ,

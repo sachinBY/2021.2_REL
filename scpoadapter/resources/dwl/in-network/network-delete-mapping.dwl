@@ -3,7 +3,9 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (repnet, indexOfRepnet) -> {
- 	INTEGRATION_STAMP: repnet.INTEGRATION_STAMP,
+ 	MS_BULK_REF: repnet.MS_BULK_REF,
+	MS_REF: repnet.MS_REF,
+	INTEGRATION_STAMP: repnet.INTEGRATION_STAMP,
 	TRANSMODE: repnet.TRANSMODE,
 	SOURCE: repnet.SOURCE,
 	DEST: repnet.DEST,

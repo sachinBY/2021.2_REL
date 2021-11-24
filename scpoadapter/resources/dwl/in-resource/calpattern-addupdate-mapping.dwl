@@ -3,6 +3,8 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
 (payload map {
+		MS_BULK_REF: $.MS_BULK_REF,
+		MS_REF: $.MS_REF,	
 		INTEGRATION_STAMP: $.INTEGRATION_STAMP,
 		CAL: $.CAL,    
 		DESCR: $.DESCR,

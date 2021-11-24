@@ -3,6 +3,8 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (flatten(flatten(payload)) map (skueffdmd, indexOfss) -> {
+ 		MS_BULK_REF: skueffdmd.MS_BULK_REF,
+		MS_REF: skueffdmd.MS_REF,
  		INTEGRATION_STAMP: skueffdmd.INTEGRATION_STAMP,
 	    ITEM: if (skueffdmd.ITEM != null) skueffdmd.ITEM else default_value,
 	    SKULOC: if (skueffdmd.SKULOC != null) skueffdmd.SKULOC else default_value,

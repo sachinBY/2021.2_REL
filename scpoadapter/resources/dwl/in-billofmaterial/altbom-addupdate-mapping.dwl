@@ -4,6 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var alternateBillOfMaterialEntity = vars.entityMap.billofmaterial[0].altbom[0]
 ---
  (payload map (altbom, indexOfaltbom) -> {
+ 	         MS_BULK_REF: altbom.MS_BULK_REF,
+			 MS_REF: altbom.MS_REF,
  			 INTEGRATION_STAMP: altbom.INTEGRATION_STAMP,
 			 ALTSUBORD: altbom.ALTSUBORD,
 			 ALTSUBORDDISC: altbom.ALTSUBORDDISC,

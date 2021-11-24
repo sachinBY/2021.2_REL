@@ -6,6 +6,8 @@ var itemUomCatConvFactorCol = vars.entityMap.item[0].uomcategoryconvfactor[0] gr
 var entityMap = if (itemUomCatConvFactorEntity != null) unzip((itemUomCatConvFactorEntity map (v,k)->{(payload.data map {((v.scpoColumnName) : if ($[v.scpoColumnName] !=null) true else false)})})) else []
 ---
  payload map {
+ 			MS_BULK_REF: $.MS_BULK_REF,
+			MS_REF: $.MS_REF, 
  			INTEGRATION_STAMP: $.INTEGRATION_STAMP,
 			ITEM: $.ITEM,
 			RATIO: $.RATIO,
