@@ -15,7 +15,7 @@ var SkuSSPresentationUDC = vars.entityMap.sku[0].skusspresentation[0]
 	    DISPLAYQTY: if (value.DISPLAYQTY != null) value.DISPLAYQTY else default_value,
 	    MAXSS: if (value.MAXSS != null) value.MAXSS else default_value,
 	    MAXOH: if (value.MAXOH != null) value.MAXOH else default_value,
-	    DMDGROUP: default_value,  
+        DMDGROUP: default_value,
 	    (value.udcs map {
 			(($.scpoColumnName): if ($.scpoColumnValue == null or $.scpoColumnValue == default_value) default_value
 								else if ($.dataType != null and $.dataType == "DATETIME") $.scpoColumnValue as DateTime as String
