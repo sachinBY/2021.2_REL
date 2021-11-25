@@ -14,8 +14,6 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 flatten(payload.demandGroupParameters map(dmdgrpParams, indexDmdParams) ->  {
 	
 	data : (dmdgrpParams.demandGroupParameters map(dmdGroupPrams, dmdIndex)-> {
-		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,
 		INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ indexDmdParams ++ 'S') as Period) replace 'T' with '') [0 to 17],
 		DMDCAL: if(dmdGroupPrams.demandCalendar != null) dmdGroupPrams.demandCalendar else default_value,
 		DMDGROUP: dmdGroupPrams.demandGroup,

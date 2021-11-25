@@ -3,8 +3,6 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 payload map(dynamicDeploymentSourcing, dynamicDeploymentSourcingIndex) -> {
-	MS_BULK_REF: dynamicDeploymentSourcing.MS_BULK_REF,
-	MS_REF: dynamicDeploymentSourcing.MS_REF,
 	INTEGRATION_STAMP: dynamicDeploymentSourcing.INTEGRATION_STAMP,
 	ALTSRCPENALTY:dynamicDeploymentSourcing.ALTSRCPENALTY ,
 	ARRIVCAL: dynamicDeploymentSourcing.ARRIVCAL,

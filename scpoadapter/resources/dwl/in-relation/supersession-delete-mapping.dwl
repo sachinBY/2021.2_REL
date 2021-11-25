@@ -1,9 +1,8 @@
 %dw 2.0
 output application/java  
+ns ns0 urn:jda:master:relation:xsd:3
 ---
  (payload map (relation, indexOfrelation) -> {
- 	MS_BULK_REF: relation.MS_BULK_REF,
-	MS_REF: relation.MS_REF,	
  	INTEGRATION_STAMP: relation.INTEGRATION_STAMP,
     (ALTITEM: relation.ALTITEM) if not relation.ALTITEM == null,
     (DISC: relation.DISC) if not relation.DISC == null,

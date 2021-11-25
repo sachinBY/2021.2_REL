@@ -11,8 +11,6 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 		scpoColumnValue: if ( not isEmpty(lib.mapHostToSCPO($, (value.hostColumnName splitBy "/"), 0)) ) (lib.mapHostToSCPO($, (value.hostColumnName splitBy "/"), 0)) else default_value,
 		(dataType: value.dataType) if ((lib.mapHostToSCPO($, (value.hostColumnName splitBy "/"), 0)) != null),
 	}),
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
 	INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ $$ ++ 'S') as Period) replace 'T' with '') [0 to 17],
 	CUST: if (not isEmpty($.'buyer.primaryId'))
 					$.'buyer.primaryId'

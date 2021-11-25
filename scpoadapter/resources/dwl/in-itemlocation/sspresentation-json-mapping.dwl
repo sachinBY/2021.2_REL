@@ -6,8 +6,6 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 (payload.itemLocation map {
 (if($.safetyStockPresentation != null) {
 arr:($.safetyStockPresentation map (sspr , index) -> {
-		  MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		  MS_REF: vars.storeMsgReference.messageReference,	
 		  (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		  ITEM:$.itemLocationId.item.primaryId,
 		  LOC: $.itemLocationId.location.primaryId,
@@ -33,8 +31,6 @@ arr:($.safetyStockPresentation map (sspr , index) -> {
 	{
 	
 arr:[{	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
-	    MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,	
 		ITEM:$.itemLocationId.item.primaryId,
 		LOC: $.itemLocationId.location.primaryId,
 		SkuSSPresentationUDC:(flatten([(lib.getUdcNameAndValue(skuSSPresentationEntity, $.avpList, lib.getAvpListMap($.avpList) )[0]) 

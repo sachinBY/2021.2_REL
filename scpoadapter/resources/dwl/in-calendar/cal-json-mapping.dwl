@@ -6,8 +6,7 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.calendar filter ($.calendarType != null and calendartypeCode[$.calendarType][0] != null) map(calendar, calendarIndex) -> {
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
+	
 	CAL : if(calendar.calendarId !=null) 
 			calendar.calendarId
 		  else  

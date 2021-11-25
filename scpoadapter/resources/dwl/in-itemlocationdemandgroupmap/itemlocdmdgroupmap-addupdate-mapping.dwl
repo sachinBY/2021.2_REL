@@ -3,8 +3,6 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (itemlocdmdgroup, indexOfItemlocdmdgroup) -> {
- 		MS_BULK_REF: itemlocdmdgroup.MS_BULK_REF,
-        MS_REF: itemlocdmdgroup.MS_REF,
 		INTEGRATION_STAMP: itemlocdmdgroup.INTEGRATION_STAMP,
 	  	DMDGROUP: if (itemlocdmdgroup.DMDGROUP != null) itemlocdmdgroup.DMDGROUP else default_value,
 	    EFF: if (itemlocdmdgroup.EFF != null) itemlocdmdgroup.EFF else default_value,

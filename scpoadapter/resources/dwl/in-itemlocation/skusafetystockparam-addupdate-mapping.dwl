@@ -4,8 +4,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var skuSafetyStockParamEntity = vars.entityMap.sku[0].skusafetystockparam[0]
 ---
  (payload map (ssp, indexOfssp) -> {
- 		MS_BULK_REF: ssp.MS_BULK_REF,
-		MS_REF: ssp.MS_REF,	
 		INTEGRATION_STAMP: ssp.INTEGRATION_STAMP,
 	    ITEM: if (ssp.ITEM != null) ssp.ITEM else default_value,
 	    LOC: if (ssp.LOC != null) ssp.LOC else default_value,

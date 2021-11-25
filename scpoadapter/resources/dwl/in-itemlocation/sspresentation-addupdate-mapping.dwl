@@ -4,8 +4,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var SkuSSPresentationUDC = vars.entityMap.sku[0].skusspresentation[0]
 ---
 (payload map (value, indexOf) -> {
-		MS_BULK_REF: value.MS_BULK_REF,
-		MS_REF: value.MS_REF,	
 		INTEGRATION_STAMP: value.INTEGRATION_STAMP,
 	    ITEM: if (value.ITEM != null) value.ITEM else default_value,
 	    LOC: if (value.LOC != null) value.LOC else default_value,
@@ -15,7 +13,6 @@ var SkuSSPresentationUDC = vars.entityMap.sku[0].skusspresentation[0]
 	    DISPLAYQTY: if (value.DISPLAYQTY != null) value.DISPLAYQTY else default_value,
 	    MAXSS: if (value.MAXSS != null) value.MAXSS else default_value,
 	    MAXOH: if (value.MAXOH != null) value.MAXOH else default_value,
-        DMDGROUP: default_value,
 	    (value.udcs map {
 			(($.scpoColumnName): if ($.scpoColumnValue == null or $.scpoColumnValue == default_value) default_value
 								else if ($.dataType != null and $.dataType == "DATETIME") $.scpoColumnValue as DateTime as String

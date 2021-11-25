@@ -9,8 +9,6 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 ---
 flatten ( payload.transportEquipment map (transmodeeqp, indexOftransmodeeqp) ->  {
     transmodevalue:(transmodeeqp.usageThresholdValues filter ($.measurementUnitCode != null) map (transmodecap, indexOftransmodecap) -> {
-    	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,
     	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOftransmodeeqp))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		MAXCAP: if (transmodecap.maximumAllowableValue != null) transmodecap.maximumAllowableValue 
 			else default_value,

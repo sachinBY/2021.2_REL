@@ -7,8 +7,7 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 flatten(flatten(payload.demandGroupParameters map(dmdGroupPrams, index)-> {
 	data: (dmdGroupPrams.demandGroupParameters map(dmdGrpPrams, dmdIndex) -> {
 		val: (dmdGrpPrams.demandGroupEffectiveParameters map(eff,index) -> {
-			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-			MS_REF: vars.storeMsgReference.messageReference,
+			
 			INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ index ++ 'S') as Period) replace 'T' with '') [0 to 17],
 			DMDGROUP: dmdGrpPrams.demandGroup,
 			ITEM: dmdGroupPrams.demandGroupParametersId.item.primaryId,

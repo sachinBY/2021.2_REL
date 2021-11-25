@@ -3,8 +3,7 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 (payload map(calendarPattern, calendarPatternPatternIndex) -> {
-	    MS_BULK_REF: calendarPattern.MS_BULK_REF,
-	    MS_REF: calendarPattern.MS_REF,
+	
 		CAL : calendarPattern.CAL,
 		INTEGRATION_STAMP: calendarPattern.INTEGRATION_STAMP,
 		PATTERNSEQNUM: calendarPattern.PATTERNSEQNUM,

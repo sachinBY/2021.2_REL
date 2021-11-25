@@ -3,7 +3,7 @@ canmodel:
     #use BYDM_CONFIG_CANMODEL_SERVICE to use canmodel as a service. 
     #use BYDM_CONFIG_LOCAL_FILE_CONFIG to use local file canmodel
     type: "BYDM_CONFIG_LOCAL_FILE_CONFIG" 
-    version: "BYDM 2021.10.0"  
+    version: "BYDM 2021.5.0,BYDM 2021.3.0,BYDM 2021.2.0-0,BYDM 2020.3.0.3,BYDM 2020.3.0.2,BYDM 2020.3.0-1,BYDM 2020.3.0-0,BYDM 2020.2.0"  
   service:
     config: "HTTP_Canmodel_Request_configuration"
     #config: "HTTPS_Canmodel_Request_configuration"

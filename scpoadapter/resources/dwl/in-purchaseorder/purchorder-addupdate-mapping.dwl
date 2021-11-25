@@ -5,8 +5,6 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 
 ---
  (payload map (order, indexOfOrder) -> {
- 		MS_BULK_REF: order.MS_BULK_REF,
-	  	MS_REF: order.MS_REF,				
 		INTEGRATION_STAMP: order.INTEGRATION_STAMP,
 	  	ORDERNUM: if (order.ORDERNUM !=null) order.ORDERNUM else default_value,
 	    LINENUM: if (order.LINENUM !=null) order.LINENUM else default_value,

@@ -4,9 +4,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
 (payload map (purchMethod, indexOfPurchMethod) -> {
-			MS_BULK_REF: purchMethod.MS_BULK_REF,
-			MS_REF: purchMethod.MS_REF,	
-	   
 		    INTEGRATION_STAMP: purchMethod.INTEGRATION_STAMP,
 		    INCORDERQTY: if (purchMethod.INCORDERQTY != null) purchMethod.INCORDERQTY else default_value,
 			ITEM: if (purchMethod.ITEM != null) purchMethod.ITEM else default_value,

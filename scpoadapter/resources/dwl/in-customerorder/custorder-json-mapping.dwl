@@ -8,8 +8,6 @@ var dateUtil = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-u
 flatten (payload.customerOrder map (order, orderIndex) -> {
 	customerorder: flatten((order.lineItem filter (lower($.lineStatus) == 'open') map(orderLineItem, orderLineItemIndex) -> {
 		(array: flatten((orderLineItem.lineItemDetail map (lineItemDetail, indexDetail) -> {
-		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	    MS_REF: vars.storeMsgReference.messageReference,
 		INTEGRATION_STAMP: ((vars.creationDateAndTime as DateTime + ('PT' ++ orderIndex ++ 'S') as Period) replace 'T' with '') [0 to 17], 
 		DMDGROUP: if (orderLineItem.demandChannel != null) orderLineItem.demandChannel else default_value,
 		FCSTSW: if (orderLineItem.isForecastOrder != null) if(orderLineItem.isForecastOrder) 1 else 0 else default_value,

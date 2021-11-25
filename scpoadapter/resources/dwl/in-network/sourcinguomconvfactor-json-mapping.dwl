@@ -21,8 +21,6 @@ flatten(flatten(flatten(flatten(payload.network map(network, networkIndex) -> {
 			RATIO: if (measurementTypeConversion.ratioOfTargetPerSource != null)
 				measurementTypeConversion.ratioOfTargetPerSource
 				else default_value,
-			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-			MS_REF: vars.storeMsgReference.messageReference,
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((measurementTypeConversionIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			SOURCE: if(network.pickUpLocation.locationId != null) network.pickUpLocation.locationId
 				else default_value,

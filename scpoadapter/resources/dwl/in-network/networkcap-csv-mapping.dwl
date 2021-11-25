@@ -15,9 +15,6 @@ var networkCapEntity = vars.entityMap.networkmap[0].networkcap[0]
 			(scpoColumnValue: (lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0))) if ((lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0)) != null),
 			(dataType: value.dataType) if ((lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0)) != null)
 		})) filter sizeOf($) > 0,
-		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,
-		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((networkIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		UOM: if(network.'networkCapacity.minimumCapacity.measurementUnitCode' != null and (network.documentActionCode == "ADD" or network.documentActionCode == "CHANGE_BY_REFRESH"))
 		 	  vars.uomShortLabels[network.'networkCapacity.minimumCapacity.measurementUnitCode'][0]
 			 else vars.uomShortLabels[p("bydm.network.default.uom")][0] as Number,

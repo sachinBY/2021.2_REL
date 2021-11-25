@@ -3,13 +3,12 @@ scpo:
     bulk:
       processing:
         csv_dir_timestamp_pattern:
-          format: "yyyy-MM-dd-HH-mm"
-          rolling-offset: 15 # number of mins or hours at which new folder will be created  
+          format: "yyyy-MM-dd-HH-mm"  
         create_csv_per_message: false  
         bulk_csv_source_dir:
-          path: "//MD1NPDVJCE01.dev.corp.local/Tools/u/SCPO/csvdata"
+          path: "//MD1NPDVJCE01.dev.corp.local/Tools/u/SCPO-A/csvdata"
         processed_csv_dir:
-          path: "//MD1NPDVJCE01.dev.corp.local/Tools/u/SCPO/archive"  
+          path: "//MD1NPDVJCE01.dev.corp.local/Tools/u/SCPO-A/archive"  
     bydm_billofmaterial:
       tables: "bom,altbom"
       parenttable: "bom"

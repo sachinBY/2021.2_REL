@@ -3,8 +3,6 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"  
 ---
 (payload map (resource, indexOfresource) -> { 
-		MS_BULK_REF: resource.MS_BULK_REF,
-		MS_REF: resource.MS_REF,	
 		INTEGRATION_STAMP: resource.INTEGRATION_STAMP, 	  	
 	    ADJFACTOR: if(resource.ADJFACTOR != default_value) resource.ADJFACTOR as Number else default_value,
 	    ADDONCOST: if(resource.ADDONCOST != default_value) resource.ADDONCOST as Number else default_value, 

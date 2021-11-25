@@ -6,8 +6,6 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
 payload.transportEquipment map (transmodeeqp, indexOftransmodeeqp) -> {
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
 	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOftransmodeeqp))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),	
 	DESCR: if ( transmodeeqp.description.value != null) transmodeeqp.description.value
 			else default_value,

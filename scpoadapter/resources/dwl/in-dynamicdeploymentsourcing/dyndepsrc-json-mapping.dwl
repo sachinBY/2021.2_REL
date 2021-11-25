@@ -5,8 +5,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.dynamicDeploymentSourcing map(dynamicDeploymentSourcing, dynamicDeploymentSourcingIndex) -> {
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
 	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((dynamicDeploymentSourcingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	ALTSRCPENALTY: if(dynamicDeploymentSourcing.alternateSourcePenaltyAmount != null) dynamicDeploymentSourcing.alternateSourcePenaltyAmount as Number else default_value,
 	ARRIVCAL: if(dynamicDeploymentSourcing.arrivalCalendar != null) dynamicDeploymentSourcing.arrivalCalendar as String else default_value,

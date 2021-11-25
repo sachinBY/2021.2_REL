@@ -8,8 +8,6 @@ flatten(flatten(flatten(payload.productionRouting map (productionRouting, produc
     steps: (productionRouting.productionRoutingOperation map(productionstep, productionstepIndex) -> {
 		val:(productionstep.productionResource map(productionResource,productionResourceIndex)->{
 			newval:(productionResource.alternateResource map(alternateResource,alternateResourceIndex)->{
-				MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-				MS_REF: vars.storeMsgReference.messageReference,
 				(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((productionRoutingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 				ITEM: if (productionRouting.item != null) productionRouting.item else default_value,
 				LOC: if (productionRouting.location != null) productionRouting.location else default_value,

@@ -4,8 +4,6 @@ var custEntity = vars.entityMap.cust[0].cust[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.party map {
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
 	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"} 
     ),
 	CUST:$.partyId,

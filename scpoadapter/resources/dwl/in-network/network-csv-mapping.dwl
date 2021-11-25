@@ -13,9 +13,6 @@ var networkEntity = vars.entityMap.networkmap[0].network[0]
 			(scpoColumnValue: (lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0))) if ((lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0)) != null),
 			(dataType: value.dataType) if ((lib.mapHostToSCPO(network, (value.hostColumnName splitBy "/"), 0)) != null)
 		})) filter sizeOf($) > 0,
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
-	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((networkIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	TRANSMODE: if(network.'transportEquipmentTypeCode.value' != null)
 					network.'transportEquipmentTypeCode.value'
 			   else default_value,

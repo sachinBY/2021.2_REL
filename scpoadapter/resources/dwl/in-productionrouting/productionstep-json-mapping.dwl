@@ -14,8 +14,6 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 flatten(flatten(flatten(payload.productionRouting default [] map (productionRouting, productionRoutingIndex) -> {
 	steps:(productionRouting.productionRoutingOperation map (productionstep, productionstepIndex) -> {
 		val:(productionstep.productionResource map(item,index)->{
-		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,	
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((productionRoutingIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		STEPNUM: if (productionstep.operationNumber != null) productionstep.operationNumber as Number else default_value,
 		RES: if (item.resourceId != null) item.resourceId else default_value,

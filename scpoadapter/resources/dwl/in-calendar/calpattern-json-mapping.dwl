@@ -8,8 +8,7 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 ---
 flatten(payload.calendar filter ($.calendarType != null and calendartypeCode[$.calendarType][0] != null) map(calendar, calendarIndex)->{
 	calendarPatterns: ( calendar.pattern map(calendarPattern, calendarPatternIndex)-> {
-	    MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,
+	
 		CAL : if(calendar.calendarId !=null) 
 				calendar.calendarId
 			  else  

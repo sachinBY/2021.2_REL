@@ -4,8 +4,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
 (payload map (productionStep, indexofproductionStep) -> {
-		MS_BULK_REF: productionStep.MS_BULK_REF,
-		MS_REF: productionStep.MS_REF,
 	    INTEGRATION_STAMP: productionStep.INTEGRATION_STAMP,
 		ITEM:  productionStep.ITEM,
 		LOC:  productionStep.LOC, 

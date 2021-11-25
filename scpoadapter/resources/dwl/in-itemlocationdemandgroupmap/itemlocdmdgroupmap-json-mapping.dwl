@@ -5,8 +5,6 @@ var itemlocdmdgroupmap = vars.entityMap.itemlocdmdgroupmap[0].itemlocdmdgroupmap
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 (payload.itemLocationDemandGroupMap map {
-  MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-  MS_REF: vars.storeMsgReference.messageReference,
   (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
   DMDGROUP: $.itemLocationDemandGroupMapId.demandChannel,
   EFF: if ($.effectiveFromDate != null) $.effectiveFromDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"} else "1970-01-01" as Date {format: "yyyy-MM-dd", class : "java.sql.Date"},

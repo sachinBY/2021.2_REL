@@ -14,8 +14,6 @@ var conversionToYears=vars.codeMap."time-units-years-conversion"
 (payload.itemLocation map(itemLocation,index) -> {
 (if(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffectiveParameters != null) {
 arr:(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffectiveParameters map (eff,index) -> {
-		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,	
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		ITEM: itemLocation.itemLocationId.item.primaryId,
 		LOC: itemLocation.itemLocationId.location.primaryId,
@@ -77,8 +75,6 @@ arr:(itemLocation.inventoryOptimizationParameters.inventoryOptimizationEffective
 	})}
 else {
 arr:[{(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,	
 	ITEM:itemLocation.itemLocationId.item.primaryId,
     LOC:itemLocation.itemLocationId.location.primaryId,
 	SKUEffIOParamUDC:(flatten([(lib.getUdcNameAndValue(skuEffIOParamEntity, itemLocation.avpList, lib.getAvpListMap(itemLocation.avpList) )[0]) 

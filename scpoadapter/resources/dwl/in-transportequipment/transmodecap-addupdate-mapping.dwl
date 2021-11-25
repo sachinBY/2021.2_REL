@@ -3,8 +3,6 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 (payload map (transmodecap, indexOftransmodecap) ->  {
-		MS_BULK_REF: transmodecap.MS_BULK_REF,
-		MS_REF: transmodecap.MS_REF,
 		INTEGRATION_STAMP: transmodecap.INTEGRATION_STAMP,
 		MAXCAP: if (transmodecap.MAXCAP != null) transmodecap.MAXCAP else default_value,
 		MINCAP: if (transmodecap.MINCAP != null) transmodecap.MINCAP else default_value,

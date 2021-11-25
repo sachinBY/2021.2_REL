@@ -8,8 +8,6 @@ flatten(flatten(payload.itemLocation map(itemLocation,indexOfItemLocation) ->
 {
     (conversion: itemLocation.effectiveInventoryParameters map (effectiveInventoryParameters, indexOfEffectiveInventoryParameters) ->
     {
-    	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,	
     	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfItemLocation))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
         ITEM: itemLocation.itemLocationId.item.primaryId,
         LOC: itemLocation.itemLocationId.location.primaryId,

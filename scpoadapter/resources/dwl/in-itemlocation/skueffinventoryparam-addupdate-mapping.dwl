@@ -4,8 +4,6 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var skuEffInventoryParamEntity = vars.entityMap.sku[0].skueffinventoryparam[0]
 ---
  (payload map (sep, indexOfsep) -> {
- 		MS_BULK_REF: sep.MS_BULK_REF,
-		MS_REF: sep.MS_REF,	
 		INTEGRATION_STAMP: sep.INTEGRATION_STAMP,
 	    ITEM: if (sep.ITEM != null) sep.ITEM else default_value,
 	    LOC: if (sep.LOC != null) sep.LOC else default_value,

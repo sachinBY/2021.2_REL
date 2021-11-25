@@ -7,8 +7,6 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 flatten(flatten(payload.plannedSupply filter ($."type" == "PLAN_ARRIVAL") map (plannedSupply,indexOfplannedSupply) -> { 
     conversion: plannedSupply.plannedSupplyDetail map(plannedSupplyDetail,indexOfplannedSupplyDetail) ->
     {
-    	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-		MS_REF: vars.storeMsgReference.messageReference,
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfplannedSupply))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),	
 		(ITEM: plannedSupply.plannedSupplyId.item.primaryId) 
 				if plannedSupply.plannedSupplyId.item.primaryId != null,

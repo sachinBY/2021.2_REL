@@ -8,8 +8,6 @@ import * from dw::Runtime
 var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-util.dwl")
 ---
 (payload.prepackSupply map (prepack , index) -> {
-	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
-	MS_REF: vars.storeMsgReference.messageReference,
 	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	AVAILDATE: if (prepack.scheduledOnHandDate != null and funCaller.formatGS1ToSCPO(prepack.scheduledOnHandDate) != default_value) prepack.scheduledOnHandDate as Date {format: "yyyy-MM-dd", class : "java.sql.Date"} else default_value,
 	LOC: if (prepack.location != null) prepack.location else default_value,

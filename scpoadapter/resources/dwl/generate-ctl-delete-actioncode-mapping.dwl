@@ -2,18 +2,10 @@
 output text/plain
 var keys = vars.headers
 var columns = (keys map (key , index) -> 
-{'key': if(key == 'INTEGRATION_STAMP')
-			key ++ "\" TO_DATE(SUBSTR(:" ++ key ++ ",1,19), 'YYYY/MM/DD HH24:MI:SS')\""
-		else if(key == 'MS_BULK_REF' or key == 'MS_REF') 
-			key ++ " FILLER "
+	{'key': if(key == 'INTEGRATION_STAMP')
+		key ++ "\" TO_DATE(SUBSTR(:" ++ key ++ ",1,19), 'YYYY/MM/DD HH24:MI:SS')\""
 		else if(vars.metadata.columns[key]['DATA_TYPE'] == 'DATE' and !isEmpty(vars.metadata.columns[key]['DATA_TYPE'])) 
-			key ++ "\" TO_DATE(SUBSTR(:" ++ key ++ ",1,10), 'YYYY/MM/DD')\"" 
-		else if(vars.metadata.columns[key]['DATA_DEFAULT'] != null and vars.metadata.columns[key]['DATA_TYPE'] == 'VARCHAR2') 
-			key ++ " " ++ "\"nvl(:" ++ key ++ ", '" ++ vars.metadata.columns[key]['DATA_DEFAULT'] ++ "')\""	
-		else if(vars.metadata.columns[key]['DATA_DEFAULT'] == null and vars.metadata.columns[key]['DATA_TYPE'] == 'VARCHAR2' and vars.metadata.columns[key]['IS_PK'] == 0 and vars.metadata.columns[key]['IS_NULLABLE'] == 'N') 
-			key ++ " " ++ "\"nvl(:" ++ key ++ ", ' ')\""	 
-		else 
-			key
+		key ++ "\" TO_DATE(SUBSTR(:" ++ key ++ ",1,10), 'YYYY/MM/DD')\"" else if(vars.metadata.columns[key]['DATA_DEFAULT'] != null and vars.metadata.columns[key]['DATA_TYPE'] == 'VARCHAR2') key ++ " " ++ "\"nvl(:" ++ key ++ ", '" ++ vars.metadata.columns[key]['DATA_DEFAULT'] ++ "')\"" else key
 	}
 ).*key joinBy (',')
 ---
