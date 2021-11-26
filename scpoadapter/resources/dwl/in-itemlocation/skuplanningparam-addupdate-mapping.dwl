@@ -4,6 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 var skuPlanningParamEntity = vars.entityMap.sku[0].skuplanningparam[0]
 ---
  (payload map (spp, indexOfspp) -> {
+ 		MS_BULK_REF: spp.MS_BULK_REF,
+		MS_REF: spp.MS_REF,	
 		INTEGRATION_STAMP: spp.INTEGRATION_STAMP,
 	    ITEM: if (spp.ITEM != null) spp.ITEM else default_value,
 	    LOC: if (spp.LOC != null) spp.LOC else default_value,

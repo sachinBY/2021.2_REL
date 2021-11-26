@@ -4,6 +4,8 @@ var default_value = "###JDA_DEFAULT_VALUE###"
 
 ---
 (payload map (promotion, promotionIndex) -> {
+			MS_BULK_REF: promotion.MS_BULK_REF,
+			MS_REF: promotion.MS_REF,		
 		    INTEGRATION_STAMP: promotion.INTEGRATION_STAMP,
 			DESCR:  promotion.DESCR,
 			DMDCAL:  promotion.DMDCAL,

@@ -18,6 +18,8 @@ flatten (flatten (payload.resource map(res , index) ->{
 				and (res.documentActionCode == "ADD" or res.documentActionCode == "CHANGE_BY_REFRESH")
 				and resourceEntity != null
 			),
+			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+			MS_REF: vars.storeMsgReference.messageReference,	
 			ADJFACTOR: if(res.productionAdjustmentFactor != null) (res.productionAdjustmentFactor/100) as Number else default_value,
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 			ADDONCOST: if(res.resourceAdditionalCost.value != null) res.resourceAdditionalCost.value else default_value,

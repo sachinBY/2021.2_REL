@@ -1,6 +1,5 @@
 %dw 2.0
 output application/java  
-ns ns0 urn:jda:ecom:planned_supply:xsd:3
 var planPurchEntity = vars.entityMap.firmplanpurch[0].planpurch[0]
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
@@ -12,6 +11,8 @@ flatten(flatten(payload.plannedSupply filter ($."type" == "PLAN_PURCHASE") map (
 			(scpoColumnValue: (lib.mapHostToSCPO(plannedSupply, (value.hostColumnName splitBy "/"), 0))) if ((lib.mapHostToSCPO(plannedSupply, (value.hostColumnName splitBy "/"), 0)) != null),
 			(dataType: value.dataType) if ((lib.mapHostToSCPO(plannedSupply, (value.hostColumnName splitBy "/"), 0)) != null)
 		})) filter sizeOf($) > 0,
+		MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+	  	MS_REF: vars.storeMsgReference.messageReference,	
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfplannedSupply))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 		SEQNUM: (indexOfplannedSupply*100 + indexOfplannedSupplyDetail),
 		(ITEM: plannedSupply.plannedSupplyId.item.primaryId) 

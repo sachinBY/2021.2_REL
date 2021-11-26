@@ -20,6 +20,8 @@ fun ancestryUDCs(data , ancestryTables) = (
 )
 ---
 (payload.demandUnit map {
+  (MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+  (MS_REF: vars.storeMsgReference.messageReference),
   (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(($$))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
   (DESCR: $.demandUnitDetails.description.value) if not $.demandUnitDetails.description.value == null,
   (DMDUNIT: $.demandUnitId) if not $.demandUnitId == null,

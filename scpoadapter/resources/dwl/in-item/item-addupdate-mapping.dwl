@@ -3,7 +3,9 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 
 ---
-(payload map (item, indexOfItem) -> {  	  	
+(payload map (item, indexOfItem) -> { 
+		MS_BULK_REF: item.MS_BULK_REF,
+		MS_REF: item.MS_REF, 	  	
    		INTEGRATION_STAMP: item.INTEGRATION_STAMP,
     	DEFAULTUOM: if(item.DEFAULTUOM != null) item.DEFAULTUOM else default_value,    
 	    DESCR:  if(item.DESCR != null) item.DESCR else default_value,

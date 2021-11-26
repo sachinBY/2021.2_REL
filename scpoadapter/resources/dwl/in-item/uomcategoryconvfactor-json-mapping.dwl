@@ -20,6 +20,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			(ITEM: item.itemIdentification.additionalTradeItemIdentification) if item.itemIdentification.additionalTradeItemIdentification.@additionalTradeItemIdentificationTypeCode == "BUYER_ASSIGNED" 
   			and not item.itemIdentification.additionalTradeItemIdentification == null,
   			ACTIONCODE: itemLogisticUnitInformation.actionCode,
+  			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 			
 		})
@@ -49,6 +51,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			),
 			(RATIO: logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].TRADEITEMQUANTITY),
 			(ACTIONCODE: logisticUnitInfo[sizeOf(logisticUnitInfo) - 1].ACTIONCODE),
+			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	}),(flatten(flatten(flatten((payload.item map (item, itemIndex) -> {
 	itemLogisticUnitInformation:(item.itemLogisticUnitInformation map (itemLogisticUnitInformation , index) -> {
@@ -77,6 +81,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
   			else if(itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode != null and itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode != "" and vars.uomShortLabels[itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode][0] != null) findCategory(vars.uomShortLabels[itemLogisticUnit.dimensionsOfLogisticUnit.depth.measurementUnitCode][0]) else findCategory(30),
   			(RATIO_DEPTH: itemLogisticUnit.dimensionsOfLogisticUnit.depth.value as Number) if(itemLogisticUnit.dimensionsOfLogisticUnit.depth.value != null and itemLogisticUnit.dimensionsOfLogisticUnit.depth.value != ""),
   			ACTIONCODE: itemLogisticUnitInformation.actionCode,
+  			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		})
 	})
@@ -89,6 +95,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_WEIGHT,
 			RATIO: logisticUnitInfo[0].RATIO_WEIGHT,
 			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		}),
 		logistics_vol:({
@@ -99,6 +107,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_VOL,
 			RATIO: logisticUnitInfo[0].RATIO_VOL,
 			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		}),
 		logistics_depth:({
@@ -109,6 +119,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			SOURCECATEGORY: logisticUnitInfo[0].SOURCECATEGORY_DEPTH,
 			RATIO: logisticUnitInfo[0].RATIO_DEPTH,
 			ACTIONCODE: logisticUnitInfo[0].ACTIONCODE,
+			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 		})
 	}pluck($))),flatten(flatten((payload.item map (item, itemIndex) -> {
@@ -132,6 +144,8 @@ flatten(if(p("bydm.automatic.uomconversion") == "true")
 			else findCategory(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0])
 		) if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != ""),
 		ACTIONCODE: item.documentActionCode,
+		(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+		(MS_REF: vars.storeMsgReference.messageReference),
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	})
 } pluck($))))])
@@ -159,6 +173,8 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
 			else findCategory(vars.uomShortLabels[measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode][0])
 		) if (measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != null and measurementTypeConversion.targetMeasurementUnitCode.measurementUnitCode != ""),
 		ACTIONCODE: item.documentActionCode,
+		(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+		(MS_REF: vars.storeMsgReference.messageReference),
 		(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 	})
 } pluck($)))))  map (uomCategoryConvFactor, indexOfUomCategoryConvFactor) -> {
@@ -169,5 +185,7 @@ flatten(flatten((payload.item map (item, itemIndex) -> {
 			TARGETCATEGORY: uomCategoryConvFactor.TARGETCATEGORY,
 			TARGETUOM: uomCategoryConvFactor.TARGETUOM,
 			ACTIONCODE: uomCategoryConvFactor.ACTIONCODE,
+			(MS_BULK_REF: vars.storeHeaderReference.bulkReference),
+			(MS_REF: vars.storeMsgReference.messageReference),
 			(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((indexOfUomCategoryConvFactor))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"})
 			}

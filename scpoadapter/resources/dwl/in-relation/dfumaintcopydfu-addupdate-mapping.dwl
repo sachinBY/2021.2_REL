@@ -3,6 +3,8 @@ output application/java
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
  (payload map (relation, indexOfRelation) -> {
+ 		MS_BULK_REF: relation.MS_BULK_REF,
+		MS_REF: relation.MS_REF,	
 	    INTEGRATION_STAMP: relation.INTEGRATION_STAMP,
 		ACTION_GROUP_SET_ID: relation.ACTION_GROUP_SET_ID,
 		ACTION_NUMBER: relation.ACTION_NUMBER,

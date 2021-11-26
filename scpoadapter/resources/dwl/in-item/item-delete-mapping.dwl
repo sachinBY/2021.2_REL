@@ -2,6 +2,8 @@
 output application/java  
 ---
 (payload map (item, indexOfItem) -> {
+	MS_BULK_REF: item.MS_BULK_REF,
+	MS_REF: item.MS_REF, 
 	INTEGRATION_STAMP: item.INTEGRATION_STAMP,
     (DEFAULTUOM: item.DEFAULTUOM) if not item.DEFAULTUOM == null,
     (DESCR: item.DESCR) if not item.DESCR == null,

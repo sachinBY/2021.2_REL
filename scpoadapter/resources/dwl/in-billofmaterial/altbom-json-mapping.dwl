@@ -8,6 +8,8 @@ var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-u
 flatten(flatten(payload.billOfMaterial default [] map (billOfMaterial, billOfMaterialIndex) -> {
 	altbillofmaterial: (billOfMaterial.component default [] map(component, componentIndex) -> {
 		(comps: (component.substituteComponent default [] map(substituteComponent, substituteComponentIndex) -> {
+			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+			MS_REF: vars.storeMsgReference.messageReference,
 			INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$(billOfMaterialIndex)S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"},
 			ALTSUBORD: if ( substituteComponent.substituteItem.primaryId != null ) substituteComponent.substituteItem.primaryId
 							else default_value,

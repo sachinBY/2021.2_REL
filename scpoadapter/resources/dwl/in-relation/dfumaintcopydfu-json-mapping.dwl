@@ -5,6 +5,8 @@ var relationEntity = vars.entityMap.relation[0].dfumaintcopydfu[0]
 var default_value = "###JDA_DEFAULT_VALUE###"
 ---
 (payload.relation filter ($.relationId.relationType=='RELATION' or $.relationId.relationType == null) map (relation, relationIndex) -> {
+			MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+			MS_REF: vars.storeMsgReference.messageReference,	
 		    (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((relationIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"} ),
             ACTION_GROUP_SET_ID : 1,
             ACTION_NUMBER: 1,

@@ -5,6 +5,8 @@ var funCaller = readUrl("classpath://config-repo/scpoadapter/resources/dwl/date-
 var skuEntity = vars.entityMap.sku[0].sku[0]
 ---
  (payload map (sku, indexOfsku) -> {
+ 		MS_BULK_REF: sku.MS_BULK_REF,
+		MS_REF: sku.MS_REF,	
 		INTEGRATION_STAMP: sku.INTEGRATION_STAMP,
 	  	CREATIONDATE: if (sku.CREATIONDATE != null and funCaller.formatGS1ToSCPO(sku.CREATIONDATE) != default_value) sku.CREATIONDATE else default_value,
 	  	ENABLEOPT: if(sku.ENABLEOPT != null) sku.ENABLEOPT else default_value,

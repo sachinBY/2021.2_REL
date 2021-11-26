@@ -5,6 +5,8 @@ var productionMethodEntity = vars.entityMap.productionrouting[0].productionmetho
 var lib = readUrl("classpath://config-repo/scpoadapter/resources/dwl/host-scpo-udc-mapping.dwl")
 ---
 payload.productionRouting default [] map (productionmethod,productionmethodIndex) -> {
+	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+	MS_REF: vars.storeMsgReference.messageReference,
     (INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((productionmethodIndex))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	PRODUCTIONMETHOD :  if (productionmethod.productionRoutingId != null) productionmethod.productionRoutingId else default_value,
 	ITEM:  if (productionmethod.item != null) productionmethod.item else default_value,

@@ -2,6 +2,8 @@
 output application/java
 ---
 (payload map (productionMethod,indexofproductionMethod) -> {
+		MS_BULK_REF: productionMethod.MS_BULK_REF,
+		MS_REF: productionMethod.MS_REF,
 	    INTEGRATION_STAMP: productionMethod.INTEGRATION_STAMP,
 		PRODUCTIONMETHOD :  productionMethod.PRODUCTIONMETHOD ,
 		ITEM:  productionMethod.ITEM ,

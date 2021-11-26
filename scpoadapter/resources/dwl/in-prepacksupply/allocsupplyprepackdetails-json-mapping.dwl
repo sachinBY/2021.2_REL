@@ -8,6 +8,8 @@ import * from dw::Runtime
 ---
 (payload.prepackSupply map (prepack , index) -> {
 	val:(prepack.prepackDetail map (prepackDetail, index) -> {
+	MS_BULK_REF: vars.storeHeaderReference.bulkReference,
+	MS_REF: vars.storeMsgReference.messageReference,	
 	(INTEGRATION_STAMP:((vars.creationDateAndTime as DateTime) + ("PT$((index))S" as Period)) as String{format:"yyyy-MM-dd HH:mm:ss"}),
 	ITEM: if(prepackDetail.primaryId == null) fail("prepack.prepackDetail.additionalTradeItemIdentification is mandatory field in SCPO") 
 	else prepackDetail.primaryId,
